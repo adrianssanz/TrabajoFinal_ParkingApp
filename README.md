@@ -4,9 +4,9 @@ Trabajo final Grado Superior Desarrollo de apliaciones Web, Adrián Sanz Sandova
 
 # Endpoints API
 
-Tabla Vehiculos
+## Tabla Vehiculos
 
--- Con petición GET
+### Con petición GET
 
 "/api/vehiculos": Obtiene todos los vehiculos.
 
@@ -14,10 +14,10 @@ Tabla Vehiculos
 
 "/api/vehiculos/matricula/{matricula}": Obtiene un vehiculo por su matricula.
 
--- Con petición POST
+### Con petición POST
 
 "/api/vehiculos/{tipoId}": Se le proporciona un objeto vehiculo y el id del tipo de vehiculo que es, y añade un vehiculo con su tipo a la tabla.
 
--- Con petición DELETE
+### Con petición DELETE
 
 "/vehiculos/{idVehiculo}": Borra un vehiculo de la tabla segun su Id.
