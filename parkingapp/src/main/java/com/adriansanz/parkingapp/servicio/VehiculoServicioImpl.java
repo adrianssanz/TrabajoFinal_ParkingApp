@@ -57,7 +57,7 @@ public class VehiculoServicioImpl implements VehiculoServicio {
         Vehiculo vehiculoEliminar = vehiculoRepositorio.findById(id)
                 .orElseThrow(() -> new ParkingNotFoundException("No se encontró ningún vehiculo con el ID: " + id));
         ;
-        
+
         vehiculoRepositorio.delete(vehiculoEliminar);
 
         return "Vehiculo con id " + id + " borrado correctamente.";
@@ -65,7 +65,14 @@ public class VehiculoServicioImpl implements VehiculoServicio {
 
     @Override
     public Vehiculo getVehiculoByMatricula(String matricula) {
-        return vehiculoRepositorio.findByMatricula(matricula);
+        Vehiculo vehiculo = vehiculoRepositorio.findByMatricula(matricula);
+
+        if(vehiculo!=null){
+            return vehiculo;
+        } else {
+            throw new ParkingNotFoundException("No se encontró ningún vehiculo con la matricula: " + matricula);
+        }
+        
     }
 
 }
