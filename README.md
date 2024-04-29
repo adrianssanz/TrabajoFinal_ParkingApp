@@ -21,3 +21,25 @@ Trabajo final Grado Superior Desarrollo de apliaciones Web, Adrián Sanz Sandova
 ### Con petición DELETE
 
 "/vehiculos/{idVehiculo}": Borra un vehiculo de la tabla segun su Id.
+
+## Tabla Tipos de Vehiculos
+
+### Con petición GET
+
+"/tiposVehiculos": Obtiene todos los tipos de vehiculos.
+
+"/tiposVehiculos/{tipoId}": Obtiene un tipo de vehiculo por su ID.
+
+## Tabla Tickets (En proceso)
+
+### Con petición GET
+
+"/tickets": Obtiene todos los tickets.
+
+"/tickets/{idTicket}": Obtiene un ticket por su ID.
+
+"/tickets/matricula/{matricula}": Obitiene los tickets asociados a una matricula.
+
+"/tickets/pagados": Obtiene los tickets en estado "pagado".
+
+"/tickets/no-pagados": Obtiene los tickets en estado "no_pagado".
