@@ -1,5 +1,6 @@
 package com.adriansanz.parkingapp.servicio;
 
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.stereotype.Service;
@@ -56,21 +57,36 @@ public class TicketServicioImpl implements TicketServicio {
     }
 
     @Override
-public Ticket addTicket(Ticket ticket, String matricula) {
-    Vehiculo vehiculo = vehiculoRepositorio.findByMatricula(matricula);
-    
-    if (vehiculo == null) {
-        throw new ParkingNotFoundException("No se encontró vehículo con esa matrícula: " + matricula);
-    }
-    
-    List<Ticket> ticketsNoPagados = ticketRepositorio.findByVehiculoAndEstado(vehiculo, "no_pagado");
-    if (!ticketsNoPagados.isEmpty()) {
-        throw new ObjetoExistenteException("El vehículo con matrícula " + matricula + " tiene un ticket no pagado.");
+    public Ticket addTicketNoPagado(String matricula) {
+        Vehiculo vehiculo = vehiculoRepositorio.findByMatricula(matricula);
+        Ticket ticket = new Ticket();
+        if (vehiculo == null) {
+            throw new ParkingNotFoundException("No se encontró vehículo con esa matrícula: " + matricula);
+        }
+
+        List<Ticket> ticketsNoPagados = ticketRepositorio.findByVehiculoAndEstado(vehiculo, "no_pagado");
+        if (!ticketsNoPagados.isEmpty()) {
+            throw new ParkingNotFoundException(
+                    "El vehículo con matrícula " + matricula + " tiene un ticket no pagado.");
+        }
+
+        ticket.setHoraInicio(new Date());
+        ticket.setVehiculo(vehiculo);
+        ticket.setPrecio(0);
+        ticket.setEstado("no_pagado");
+        return ticketRepositorio.save(ticket);
     }
 
-    ticket.setVehiculo(vehiculo);
-    ticketRepositorio.save(ticket);
-    return ticket;
-}
+    @Override
+    public Ticket updateTicketPagado(Long id) {
+        Ticket ticket = ticketRepositorio.findById(id)
+                .orElseThrow(() -> new ParkingNotFoundException("No se encontró ningún ticket con el ID: " + id));
+
+        ticket.setEstado("pagado");
+        ticket.setPrecio(ticket.getVehiculo().getTipoVehiculo().getTarifaHora());
+        ticket.setHoraFin(new Date());
+
+        return ticketRepositorio.save(ticket);
+    }
 
 }

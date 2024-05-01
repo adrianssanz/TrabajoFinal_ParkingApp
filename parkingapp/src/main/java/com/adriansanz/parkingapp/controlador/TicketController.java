@@ -3,14 +3,20 @@ package com.adriansanz.parkingapp.controlador;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.adriansanz.parkingapp.servicio.TicketServicio;
+
+import jakarta.validation.Valid;
 
 import com.adriansanz.parkingapp.entidades.Ticket;
 
@@ -22,8 +28,15 @@ public class TicketController {
     private TicketServicio ticketServicio;
 
     @PostMapping("/tickets/{matricula}")
-    public Ticket addTicket(@RequestBody Ticket ticket, @PathVariable String matricula){
-        return ticketServicio.addTicket(ticket, matricula);
+    public ResponseEntity<Ticket> addTicketNoPagado(@PathVariable String matricula) {
+        Ticket nuevoTicket = ticketServicio.addTicketNoPagado(matricula);
+        return ResponseEntity.status(HttpStatus.CREATED).body(nuevoTicket);
+    }
+
+    @PutMapping("/tickets/{id}/pagado")
+    public ResponseEntity<Ticket> updateTicketPagado(@PathVariable Long id) {
+        Ticket ticketPagado = ticketServicio.updateTicketPagado(id);
+        return ResponseEntity.ok().body(ticketPagado);
     }
 
     @GetMapping("/tickets")
