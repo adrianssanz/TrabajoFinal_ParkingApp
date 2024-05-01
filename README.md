@@ -43,3 +43,11 @@ Trabajo final Grado Superior Desarrollo de apliaciones Web, Adrián Sanz Sandova
 "/tickets/pagados": Obtiene los tickets en estado "pagado".
 
 "/tickets/no-pagados": Obtiene los tickets en estado "no_pagado".
+
+### Con petición POST
+
+"/tickets/{matricula}": Crea un ticket en estado "no_pagado" asociado al coche con esa matricula, tambien comprueba si existe algun ticket "no_pagado".
+
+### Con petición PUT (En proceso)
+
+"/tickets/{id}/pagado": Cambia el estado del ticket con ese id a "pagado".
