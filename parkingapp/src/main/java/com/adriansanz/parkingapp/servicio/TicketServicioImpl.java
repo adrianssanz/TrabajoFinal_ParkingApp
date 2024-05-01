@@ -7,7 +7,6 @@ import org.springframework.stereotype.Service;
 
 import com.adriansanz.parkingapp.entidades.Ticket;
 import com.adriansanz.parkingapp.entidades.Vehiculo;
-import com.adriansanz.parkingapp.excepciones.ObjetoExistenteException;
 import com.adriansanz.parkingapp.excepciones.ParkingNotFoundException;
 import com.adriansanz.parkingapp.repositorios.TicketRepositorio;
 import com.adriansanz.parkingapp.repositorios.VehiculoRepositorio;
