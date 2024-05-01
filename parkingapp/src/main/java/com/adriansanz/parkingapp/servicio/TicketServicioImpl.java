@@ -72,7 +72,7 @@ public class TicketServicioImpl implements TicketServicio {
 
         ticket.setHoraInicio(new Date());
         ticket.setVehiculo(vehiculo);
-        ticket.setPrecio(0);
+        ticket.setPrecio(vehiculo.getTipoVehiculo().getTarifaHora());
         ticket.setEstado("no_pagado");
         return ticketRepositorio.save(ticket);
     }
@@ -83,7 +83,6 @@ public class TicketServicioImpl implements TicketServicio {
                 .orElseThrow(() -> new ParkingNotFoundException("No se encontró ningún ticket con el ID: " + id));
 
         ticket.setEstado("pagado");
-        ticket.setPrecio(ticket.getVehiculo().getTipoVehiculo().getTarifaHora());
         ticket.setHoraFin(new Date());
 
         return ticketRepositorio.save(ticket);
