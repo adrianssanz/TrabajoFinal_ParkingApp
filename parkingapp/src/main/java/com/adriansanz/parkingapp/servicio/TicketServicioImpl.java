@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service;
 
 import com.adriansanz.parkingapp.entidades.Ticket;
 import com.adriansanz.parkingapp.entidades.Vehiculo;
+import com.adriansanz.parkingapp.excepciones.ObjetoExistenteException;
 import com.adriansanz.parkingapp.excepciones.ParkingNotFoundException;
 import com.adriansanz.parkingapp.repositorios.TicketRepositorio;
 import com.adriansanz.parkingapp.repositorios.VehiculoRepositorio;
@@ -53,5 +54,23 @@ public class TicketServicioImpl implements TicketServicio {
         }
         return tickets;
     }
+
+    @Override
+public Ticket addTicket(Ticket ticket, String matricula) {
+    Vehiculo vehiculo = vehiculoRepositorio.findByMatricula(matricula);
+    
+    if (vehiculo == null) {
+        throw new ParkingNotFoundException("No se encontró vehículo con esa matrícula: " + matricula);
+    }
+    
+    List<Ticket> ticketsNoPagados = ticketRepositorio.findByVehiculoAndEstado(vehiculo, "no_pagado");
+    if (!ticketsNoPagados.isEmpty()) {
+        throw new ObjetoExistenteException("El vehículo con matrícula " + matricula + " tiene un ticket no pagado.");
+    }
+
+    ticket.setVehiculo(vehiculo);
+    ticketRepositorio.save(ticket);
+    return ticket;
+}
 
 }
