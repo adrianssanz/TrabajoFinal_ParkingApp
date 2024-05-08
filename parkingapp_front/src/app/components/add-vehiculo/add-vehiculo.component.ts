@@ -20,7 +20,7 @@ export class AddVehiculoComponent implements OnInit {
   }
 
   goToHome(): void {
-    this.router.navigate(['/login']);
+    this.router.navigate(['/']);
   }
 
   validarMatricula(matricula: string): boolean {
