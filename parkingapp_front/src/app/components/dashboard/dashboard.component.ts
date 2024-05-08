@@ -40,7 +40,7 @@ export class DashboardComponent implements OnInit {
         this.router.navigate(['/dashboard/ticket']);      
       },
       (error) => {
-        console.error('Error al agregar el ticket:', error);
+        console.error('Error al agregar el ticket:', error.error);
         this.router.navigate(['/dashboard/ticket']);  
       }
     );
