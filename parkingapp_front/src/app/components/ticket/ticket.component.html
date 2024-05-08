@@ -1,0 +1,14 @@
+<div *ngIf="ticketData" class="border border-1 p-2">
+    <h2>Detalles del Ticket</h2>
+    <p>ID Ticket: {{ ticketData.id }}</p>
+    <p>Matrícula: {{ ticketData.vehiculo.matricula }}</p>
+    <p>Precio por hora: {{ ticketData.precio }}</p>
+    <p>Hora de Inicio: {{ ticketData.horaInicio | date:'dd/MM/yyyy HH:mm:ss' }}</p>
+  </div>
+  
+  <div *ngIf="!ticketData">
+    <div class="alert alert-danger" role="alert">
+        ERROR: Su vehiculo ya tiene un ticket activo.
+      </div>
+  </div>
+  
