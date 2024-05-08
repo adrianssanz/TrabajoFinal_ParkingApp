@@ -6,11 +6,15 @@
       <div class="form-group m-4">
         <p class="fs-3">Matrícula:</p>
         <input type="text" class="form-control" id="matricula" name="matricula" [(ngModel)]="matricula"  required [ngClass]="{ 'invalido': !matricula }" maxlength="7">
-        <p *ngIf="!matricula" class="m-3 fs-5 text-danger"><strong>La matrícula no puede estar vacía.</strong></p>
-        <p *ngIf="matricula && !validarMatricula(matricula)" class="m-3 fs-5 text-danger">
-          <strong>La matrícula debe ser AAAAXXX<br>siendo A un numero y X una letra.</strong>
-        </p>
         
+        <div *ngIf="!matricula" class="alert alert-danger mt-2" role="alert">
+          La matrícula no puede estar vacía.
+        </div>
+        <div *ngIf="matricula && !validarMatricula(matricula)" class="alert alert-danger mt-2" role="alert">
+          La matrícula debe ser AAAAXXX<br>siendo A un numero y X una letra.
+        </div>
+
+
       </div>
 
       <div class="form-group m-4">
@@ -21,12 +25,13 @@
           <option value="2">Moto</option>
           <option value="3">Furgoneta</option>
         </select>
-        <p *ngIf="tipoId===0" class="m-3 fs-5 text-danger"><strong>Selecciona un tipo de vehiculo.</strong></p>
+        <div *ngIf="tipoId === 0" class="alert alert-danger mt-2" role="alert">
+          Seleccione un tipo de vehiculo.
+        </div>
       </div>
 
-      <div class="alert alert-dismissible fade show" role="alert" *ngIf="mensaje" [ngClass]="{ 'alert-success': tipoMensaje === 1, 'alert-danger': tipoMensaje === 2 }">
-        <strong></strong> {{ mensaje }}
-        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+      <div class="alert" role="alert" *ngIf="mensaje" [ngClass]="{ 'alert-success': tipoMensaje === 1, 'alert-danger': tipoMensaje === 2 }">
+        {{ mensaje }}
       </div>
       
       <div>
