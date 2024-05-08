@@ -10,6 +10,7 @@ import { ErrorComponent } from './error/error.component';
 import { AppRoutingModule } from './app-routing.module';
 import { AddVehiculoComponent } from './components/add-vehiculo/add-vehiculo.component';
 import { TicketComponent } from './components/ticket/ticket.component';
+import { ListaTicketsComponent } from './components/lista-tickets/lista-tickets.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import { TicketComponent } from './components/ticket/ticket.component';
     DashboardComponent,
     ErrorComponent,
     AddVehiculoComponent,
-    TicketComponent
+    TicketComponent,
+    ListaTicketsComponent
   ],
   imports: [
     BrowserModule,

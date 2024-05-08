@@ -1,16 +1,23 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { DashboardComponent } from './dashboard/dashboard.component';
-import { LoginComponent } from './login/login.component';
 import { AuthGuard } from './guards/auth-guard.guard';
 import { ErrorComponent } from './error/error.component';
-import { AddVehiculoComponent } from './add-vehiculo/add-vehiculo.component';
+import { DashboardComponent } from './components/dashboard/dashboard.component';
+import { AddVehiculoComponent } from './components/add-vehiculo/add-vehiculo.component';
+import { LoginComponent } from './components/login/login.component';
+import { TicketComponent } from './components/ticket/ticket.component';
+import { ListaTicketsComponent } from './components/lista-tickets/lista-tickets.component';
 
 const routes: Routes = [
   { path: '', component: LoginComponent },
   { path: 'add-vehiculo', component: AddVehiculoComponent },
-  { path: 'dashboard', component: DashboardComponent, canActivate:[AuthGuard]},
+  { path: 'lista-tickets', component: ListaTicketsComponent, canActivate:[AuthGuard]},
+  { path: 'dashboard', component: DashboardComponent, canActivate:[AuthGuard],
+  children: [
+    { path: "ticket", component: TicketComponent }
+  ]},
   { path: '**', component: ErrorComponent }
+  
 ];
 
 @NgModule({
