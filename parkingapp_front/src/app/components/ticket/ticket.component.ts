@@ -14,5 +14,6 @@ export class TicketComponent implements OnInit {
   ngOnInit(): void {
     this.ticketData = this.dataService.getTicketAñadido();
     console.log('Ticket Data:', this.ticketData);
+    this.dataService.setTicketAñadido(null);
   }
 }
