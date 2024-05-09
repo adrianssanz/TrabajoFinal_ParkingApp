@@ -1,4 +1,5 @@
 # TrabajoFinal_ParkingApp
+<<<<<<< HEAD
 
 Trabajo final Grado Superior Desarrollo de apliaciones Web, Adrián Sanz Sandoval.
 
@@ -51,3 +52,6 @@ Trabajo final Grado Superior Desarrollo de apliaciones Web, Adrián Sanz Sandova
 ### Con petición PUT (En proceso)
 
 "/tickets/{id}/pagado": Cambia el estado del ticket con ese id a "pagado".
+=======
+Trabajo final Grado Superior Desarrollo de apliaciones Web, Adrián Sanz Sandoval.
+>>>>>>> 4c9cd598a4d4fc11a4dd1904e5f022470bb72fd6
