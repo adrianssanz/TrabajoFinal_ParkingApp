@@ -10,10 +10,12 @@
           <option value="" selected disabled>Matrícula</option>
           <option *ngFor="let vehiculo of vehiculos" [value]="vehiculo.matricula">{{ vehiculo.matricula }}</option>
         </select>
-
-        <div *ngIf="!matriculaSeleccionada" class="alert alert-danger mt-2" role="alert">
-          Seleccione una matricula.
+        <div class="d-flex justify-content-center">
+          <div *ngIf="!matriculaSeleccionada" class="alert alert-danger mt-2 w-50" role="alert">
+            Seleccione una matricula.
+          </div>
         </div>
+        
       </div>
       <div class="d-flex justify-content-center">
         <button type="submit" class="fs-5 btn btn-primary m-3" [disabled]="!matriculaSeleccionada">Iniciar
