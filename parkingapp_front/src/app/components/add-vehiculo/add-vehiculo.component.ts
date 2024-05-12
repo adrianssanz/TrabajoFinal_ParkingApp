@@ -9,6 +9,7 @@ import { Router } from '@angular/router';
 })
 export class AddVehiculoComponent implements OnInit {
   matricula: string = '';
+  password: string = '';
   tipoId: number = 0;
   formInvalid: boolean = false;
   mensaje: string = '';
@@ -29,22 +30,21 @@ export class AddVehiculoComponent implements OnInit {
   }
 
   agregarVehiculo(): void {
-    if (!this.matricula || this.tipoId === 0) {
+    if (!this.matricula || this.tipoId === 0 || !this.password) {
       this.formInvalid = true;
       return; 
     }
 
-    const vehiculo = { matricula: (this.matricula || '').toUpperCase() };
+    const vehiculo = { matricula: this.matricula.toUpperCase(), password: this.password };
     this.apiService.agregarVehiculo(vehiculo, this.tipoId)
       .subscribe((data: any) => {
         console.log('Vehículo añadido exitosamente:', data);
-        this.mensaje = "Vehiculo añadido exitoxamente: " + data.matricula;
+        this.mensaje = "Vehiculo añadido exitosamente: " + data.matricula;
         this.tipoMensaje = 1;
       }, (error) => {
         console.error('Error al añadir vehículo:', error);
         this.mensaje = error.error;
         this.tipoMensaje = 2;
       });
-
   }
 }
