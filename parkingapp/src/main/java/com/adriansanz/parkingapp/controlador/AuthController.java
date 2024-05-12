@@ -22,9 +22,9 @@ public class AuthController {
         Vehiculo vehiculo = vehiculoServicio.getVehiculoByMatricula(request.getMatricula());
         
         if (vehiculo != null && vehiculo.getPassword().equals(request.getPassword())) {
-            return ResponseEntity.ok(true); // Credenciales válidas
+            return ResponseEntity.ok(true);
         } else {
-            return ResponseEntity.ok(false); // Credenciales inválidas
+            return ResponseEntity.ok(false);
         }
     }
 }

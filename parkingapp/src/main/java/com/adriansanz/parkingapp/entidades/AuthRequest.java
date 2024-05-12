@@ -4,11 +4,9 @@ public class AuthRequest {
     private String matricula;
     private String password;
 
-    // Constructor
     public AuthRequest() {
     }
 
-    // Getters y setters
     public String getMatricula() {
         return matricula;
     }
