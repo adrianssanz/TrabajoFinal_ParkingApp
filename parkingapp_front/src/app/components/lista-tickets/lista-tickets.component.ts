@@ -9,10 +9,10 @@ import { Router } from '@angular/router';
   styleUrls: ['./lista-tickets.component.css']
 })
 export class ListaTicketsComponent implements OnInit {
-  selectedMatricula: string = '';
+  selectedMatricula: String = '';
 
-  mensaje: string = '';
-  tickets: any[] = []; // Array para almacenar los tickets
+  mensaje: String = '';
+  tickets: any[] = [];
 
   constructor(private dataService: DataService, private apiService: ApiService, private router: Router,) {}
 
@@ -44,7 +44,7 @@ export class ListaTicketsComponent implements OnInit {
     );
   }
 
-  loadTickets(matricula: string): void {
+  loadTickets(matricula: String): void {
     this.apiService.getTickets(matricula).subscribe(
       (data: any[]) => {
         this.tickets = data;

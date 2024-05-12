@@ -9,9 +9,9 @@ import { ApiService } from '../../services/api.service';
   styleUrls: ['./dashboard.component.css']
 })
 export class DashboardComponent implements OnInit {
-  selectedMatricula: string = '';
+  selectedMatricula: String = '';
   ticketData: any;
-  mensaje: string = '';
+  mensaje: String = '';
 
   constructor(
     private dataService: DataService,
