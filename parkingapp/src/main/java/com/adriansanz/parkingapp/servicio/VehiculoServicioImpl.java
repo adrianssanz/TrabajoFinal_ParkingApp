@@ -2,6 +2,7 @@ package com.adriansanz.parkingapp.servicio;
 
 import java.util.List;
 
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.adriansanz.parkingapp.entidades.TipoVehiculo;
@@ -16,6 +17,7 @@ public class VehiculoServicioImpl implements VehiculoServicio {
 
     private VehiculoRepositorio vehiculoRepositorio;
     private TipoVehiculoRepositorio tipoVehiculoRepositorio;
+    private PasswordEncoder passwordEncoder;
 
     public VehiculoServicioImpl(VehiculoRepositorio vehiculoRepositorio,
             TipoVehiculoRepositorio tipoVehiculoRepositorio) {
@@ -42,6 +44,9 @@ public class VehiculoServicioImpl implements VehiculoServicio {
 
         vehiculo.setTipoVehiculo(tipoVehiculo);
 
+        String contraseñaCifrada = passwordEncoder.encode(vehiculo.getPassword());
+        vehiculo.setPassword(contraseñaCifrada);
+        
         return vehiculoRepositorio.save(vehiculo);
     }
 
