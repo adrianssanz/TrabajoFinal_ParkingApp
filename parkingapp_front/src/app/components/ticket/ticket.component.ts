@@ -1,19 +1,10 @@
-import { Component, Input, OnInit } from '@angular/core';
-import { DataService } from '../../services/data.service';
+import { Component, Input } from '@angular/core';
 
 @Component({
   selector: 'app-ticket',
   templateUrl: './ticket.component.html',
-  styleUrls: ['./ticket.component.css']
+  styleUrl: './ticket.component.css',
 })
-export class TicketComponent implements OnInit {
-  ticketData: any;
-
-  constructor(private dataService: DataService) { }
-
-  ngOnInit(): void {
-    this.ticketData = this.dataService.getTicketAñadido();
-    console.log('Ticket Data:', this.ticketData);
-    this.dataService.setTicketAñadido(null);
-  }
+export class TicketComponent {
+  @Input() ticketData: any;
 }
