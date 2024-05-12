@@ -1,5 +1,7 @@
 package com.adriansanz.parkingapp.entidades;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.Pattern;
@@ -23,6 +25,11 @@ public class Vehiculo {
     @Pattern(regexp = "\\d{4}[A-Z]{3}", message = "El formato de la matrícula debe ser XXXXLLL (donde X es un dígito y L es una letra mayúscula).")
     @Column(name = "matricula", unique = true)
     private String matricula;
+    
+    @NotEmpty(message = "La contraseña no debe estar vacía o nula.")
+    @Column(name = "password")
+    @JsonIgnore
+    private String password;
 
     @ManyToOne
     @JoinColumn(name = "tipo_id")
