@@ -1,5 +1,26 @@
-<div class="fondo-coches" style="height: 100vh;">
-    <div class="border border-1 bg-danger">
-        <p class="text-white">Aqui tienes tus tickets: {{selectedMatricula}} </p>
+<div class="fondo-coches p-5" style="height: 100%;">
+  <div class="border border-2 rounded p-3 text-white bg-warning" style="min-height: 88vh;">
+    <h2 class="h1 m-5 text-center">Aqui tienes tus tickets <span class="border border-1 rounded p-2 bg-white text-warning">{{ selectedMatricula }}</span></h2>
+    <hr class="border-white opacity-100 rounded">
+    <div class="row">
+      <ng-container *ngIf="tickets && tickets.length > 0; else noTickets">
+        <div class="col-md-6" *ngFor="let ticket of tickets">
+          <app-ticket [ticketData]="ticket"></app-ticket>
+        </div>
+      </ng-container>
+      <ng-template #noTickets>
+        <div class="col text-center d-flex justify-content-center">
+          <div class="alert alert-danger mt-2 fs-2 w-50" role="alert">
+            Su vehiculo no tiene ningun ticket disponible.
+            <p class="fs-4">Pulse aqui para iniciar uno.</p>
+            <button class="fs-5 btn btn-primary m-3 text-white" (click)="nuevoTicket()">Nuevo ticket</button>
+          </div>
+        </div>
+      </ng-template>
     </div>
+    <div class="d-flex justify-content-center">
+      <button (click)="goToHome()" class="fs-5 btn btn-primary m-3">Volver al inicio</button>
+      <button (click)="goToDashboard()" class="fs-5 btn btn-success m-3">Tu vehiculo</button>
+    </div>
+  </div>
 </div>
