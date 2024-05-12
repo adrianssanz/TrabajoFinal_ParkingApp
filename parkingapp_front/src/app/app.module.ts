@@ -9,8 +9,9 @@ import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { ErrorComponent } from './error/error.component';
 import { AppRoutingModule } from './app-routing.module';
 import { AddVehiculoComponent } from './components/add-vehiculo/add-vehiculo.component';
-import { TicketComponent } from './components/ticket/ticket.component';
 import { ListaTicketsComponent } from './components/lista-tickets/lista-tickets.component';
+import { TicketNuevoComponent } from './components/ticket-nuevo/ticket-nuevo.component';
+import { TicketComponent } from './components/ticket/ticket.component';
 
 @NgModule({
   declarations: [
@@ -19,8 +20,9 @@ import { ListaTicketsComponent } from './components/lista-tickets/lista-tickets.
     DashboardComponent,
     ErrorComponent,
     AddVehiculoComponent,
-    TicketComponent,
-    ListaTicketsComponent
+    TicketNuevoComponent,
+    ListaTicketsComponent,
+    TicketComponent
   ],
   imports: [
     BrowserModule,

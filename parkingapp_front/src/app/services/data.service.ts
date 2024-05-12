@@ -4,17 +4,17 @@ import { Injectable } from '@angular/core';
   providedIn: 'root'
 })
 export class DataService {
-  private selectedMatricula: string = '';
+  private selectedMatricula: String = '';
 
   private ticketAñadido: any;
 
   constructor() { }
 
-  setSelectedMatricula(matricula: string): void {
+  setSelectedMatricula(matricula: String): void {
     this.selectedMatricula = matricula;
   }
 
-  getSelectedMatricula(): string {
+  getSelectedMatricula(): String {
     return this.selectedMatricula;
   }
 
