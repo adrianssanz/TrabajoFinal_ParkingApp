@@ -18,7 +18,11 @@ export class ApiService {
     return this.http.post<any>(`${this.apiUrl}/vehiculos/${tipoId}`, vehiculo);
   }
 
-  agregarTicket(matricula: string): Observable<any> {
+  getTickets(matricula: String): Observable<any>{
+    return this.http.get(`${this.apiUrl}/tickets/matricula/${matricula}`); 
+  }
+
+  agregarTicket(matricula: String): Observable<any> {
     return this.http.post<any>(`${this.apiUrl}/tickets/${matricula}`, null);
   }
 }
