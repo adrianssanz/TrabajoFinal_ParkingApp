@@ -1,4 +1,6 @@
 import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
 import { DataService } from './data.service';
 
 @Injectable({
@@ -6,15 +8,10 @@ import { DataService } from './data.service';
 })
 export class AuthService {
 
-  constructor(private dataService: DataService) {}
+  constructor(private http: HttpClient, private dataService: DataService) {}
 
-  login(matricula: string): boolean {
-    if (matricula) {
-      this.dataService.setSelectedMatricula(matricula);
-      return true;
-    } else {
-      return false;
-    }
+  login(matricula: String, password: String): Observable<boolean> {
+    return this.http.post<boolean>('/api/login', { matricula, password });
   }
 
   logout(): void {
