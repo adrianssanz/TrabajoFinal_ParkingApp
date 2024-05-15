@@ -14,6 +14,10 @@ export class ApiService {
     return this.http.get(`${this.apiUrl}/vehiculos`);
   }
 
+  getVehiculoByUid(uid: string) {
+    return this.http.get(`${this.apiUrl}/vehiculos/uid/${uid}`);
+  }
+
   agregarVehiculo(vehiculo: any, tipoId: number): Observable<any> {
     return this.http.post<any>(`${this.apiUrl}/vehiculos/${tipoId}`, vehiculo);
   }
