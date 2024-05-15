@@ -42,6 +42,11 @@ public class VehiculoController {
         return vehiculoServicio.getVehiculoByMatricula(matricula);
     }
 
+    @GetMapping("/vehiculos/uid/{uid}")
+    public Vehiculo getVehiculoByUid(@PathVariable String uid) {
+        return vehiculoServicio.getVehiculoByUid(uid);
+    }
+
     @DeleteMapping("/vehiculos/{idVehiculo}")
     public String deleteVehiculo(@PathVariable Long idVehiculo){
         return vehiculoServicio.deleteVehiculo(idVehiculo);

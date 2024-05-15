@@ -48,7 +48,19 @@ public class VehiculoServicioImpl implements VehiculoServicio {
     @Override
     public Vehiculo getVehiculoById(Long id) {
         return vehiculoRepositorio.findById(id)
-                .orElseThrow(() -> new ParkingNotFoundException("No se encontró ningún vehiculo con el ID: " + id));
+        .orElseThrow(() -> new ParkingNotFoundException("No se encontró ningún vehiculo con el ID: " + id));
+    }
+    
+    @Override
+    public Vehiculo getVehiculoByUid(String uid) {
+        Vehiculo vehiculo = vehiculoRepositorio.findByUid(uid);
+
+        if(vehiculo!=null){
+            return vehiculo;
+        } else {
+            throw new ParkingNotFoundException("No se encontró ningún vehiculo con la uid: " + uid);
+        }
+        
     }
 
     @Override
@@ -74,5 +86,6 @@ public class VehiculoServicioImpl implements VehiculoServicio {
         }
         
     }
+
 
 }

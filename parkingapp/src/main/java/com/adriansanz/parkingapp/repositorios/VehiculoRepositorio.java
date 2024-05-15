@@ -8,4 +8,5 @@ import com.adriansanz.parkingapp.entidades.Vehiculo;
 @Repository
 public interface VehiculoRepositorio extends JpaRepository<Vehiculo, Long> {
     Vehiculo findByMatricula(String matricula);
+    Vehiculo findByUid(String uid);
 }
