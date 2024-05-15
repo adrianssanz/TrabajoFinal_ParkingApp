@@ -12,6 +12,8 @@ import { AddVehiculoComponent } from './components/add-vehiculo/add-vehiculo.com
 import { ListaTicketsComponent } from './components/lista-tickets/lista-tickets.component';
 import { TicketNuevoComponent } from './components/ticket-nuevo/ticket-nuevo.component';
 import { TicketComponent } from './components/ticket/ticket.component';
+import { LoginService } from './services/login.service';
+import { CookieService } from 'ngx-cookie-service';
 
 @NgModule({
   declarations: [
@@ -30,7 +32,7 @@ import { TicketComponent } from './components/ticket/ticket.component';
     FormsModule,
     AppRoutingModule
   ],
-  providers: [],
+  providers: [LoginService, CookieService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
