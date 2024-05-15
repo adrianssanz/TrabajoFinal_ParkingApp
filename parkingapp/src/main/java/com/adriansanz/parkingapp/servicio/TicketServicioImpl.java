@@ -39,10 +39,10 @@ public class TicketServicioImpl implements TicketServicio {
 
         if (vehiculoExistente == null) {
             throw new ParkingNotFoundException("No se encontró ningún vehiculo con la matricula: " + matricula);
-        } else if (ticketRepositorio.findByVehiculoMatriculaOrderByEstadoAsc(matricula).isEmpty()) {
+        } else if (ticketRepositorio.findByVehiculoMatriculaOrderByHoraInicioDesc(matricula).isEmpty()) {
             throw new ParkingNotFoundException("No se encontró ningún ticket con la matricula: " + matricula);
         } else {
-            return ticketRepositorio.findByVehiculoMatriculaOrderByEstadoAsc(matricula);
+            return ticketRepositorio.findByVehiculoMatriculaOrderByHoraInicioDesc(matricula);
         }
     }
 
