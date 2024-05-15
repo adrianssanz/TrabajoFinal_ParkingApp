@@ -25,6 +25,8 @@ export class DashboardComponent implements OnInit {
 
   goToHome(): void {
     this.router.navigate(['/']);
+    this.dataService.setSelectedMatricula('');
+    console.log("Sesión cerrada.");
   }
 
   goToListaTickets(): void {
