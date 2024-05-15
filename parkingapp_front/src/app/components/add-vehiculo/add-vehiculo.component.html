@@ -1,35 +1,23 @@
 <div class="fondo-coches d-flex justify-content-center align-items-center" style="height: 100vh;">
   <div class="border border-2 rounded p-3 text-center text-white bg-warning">
-    <h2 class="h1 m-5">Registrar Vehículo</h2>
+    <h2 class="h1 m-5">Añadir Vehículo</h2>
     <hr class="border-white opacity-100 rounded">
-    <form (ngSubmit)="agregarVehiculo()" class="text-start">
-      <div class="d-flex justify-content-between">
-        <div class="form-group w-50 mx-2">
-          <p class="fs-3">Matrícula:</p>
-          <input type="text" class="form-control" id="matricula" name="matricula" [(ngModel)]="matricula" required [ngClass]="{ 'invalido': !matricula }" maxlength="7">
-          <div class="d-flex justify-content-center">
-            <div *ngIf="!matricula" class="alert alert-danger mt-2" role="alert">
-              La matrícula no puede estar vacía.
-            </div>
-            <div *ngIf="matricula && !validarMatricula(matricula)" class="alert alert-danger mt-2" role="alert">
-              La matrícula debe ser AAAAXXX<br>A numero, X letra.
-            </div>
+    <form (ngSubmit)="agregarVehiculo()">
+      <div class="form-group m-4">
+        <p class="fs-3">Matrícula:</p>
+        <input type="text" class="form-control" id="matricula" name="matricula" [(ngModel)]="matricula"  required [ngClass]="{ 'invalido': !matricula }" maxlength="7">
+        <div class="d-flex justify-content-center">
+          <div *ngIf="!matricula" class="alert alert-danger mt-2 w-75" role="alert">
+            La matrícula no puede estar vacía.
           </div>
-        </div>
-
-        <div class="form-group w-50 mx-2">
-          <p class="fs-3">Contraseña:</p>
-          <input type="password" class="form-control" id="password" name="password" [(ngModel)]="password" required [ngClass]="{ 'invalido': !password }">
-          <div class="d-flex justify-content-center">
-            <div *ngIf="!password" class="alert alert-danger mt-2" role="alert">
-              Introduce una contraseña.
-            </div>
+          <div *ngIf="matricula && !validarMatricula(matricula)" class="alert alert-danger mt-2 w-75" role="alert">
+            La matrícula debe ser AAAAXXX<br>siendo A un numero y X una letra.
           </div>
         </div>
       </div>
 
-      <div class="form-group m-4 text-center">
-        <p class="fs-3">Selecciona el tipo de vehículo</p>
+      <div class="form-group m-4">
+        <p class="fs-3">Selecciona el tipo de vehiculo</p>
         <select class="fs-3 m-2 rounded" id="tipo" name="tipo" [(ngModel)]="tipoId" required [ngClass]="{ 'invalido': tipoId === 0 }">
           <option disabled selected>Tipo</option>
           <option value="1">Turismo</option>
@@ -37,22 +25,24 @@
           <option value="3">Furgoneta</option>
         </select>
         <div class="d-flex justify-content-center">
-          <div *ngIf="tipoId === 0" class="alert alert-danger mt-2" role="alert">
-            Seleccione un tipo de vehículo.
+          <div *ngIf="tipoId === 0" class="alert alert-danger mt-2 w-75" role="alert">
+            Seleccione un tipo de vehiculo.
           </div>
         </div>
+        
       </div>
-
       <div class="d-flex justify-content-center">
         <div class="alert w-75" role="alert" *ngIf="mensaje" [ngClass]="{ 'alert-success': tipoMensaje === 1, 'alert-danger': tipoMensaje === 2 }">
           {{ mensaje }}
         </div>
       </div>
       
-      <div class="d-flex justify-content-center">
-        <button type="submit" class="fs-5 btn btn-primary m-3" [disabled]="!matricula || !password || tipoId === 0 || !validarMatricula(matricula)">Añadir Vehículo</button>
-        <button (click)="goToHome()" class="fs-5 btn btn-success m-3">Volver al inicio</button>
+      <div>
+        <button type="submit" class="fs-5 btn btn-primary m-3" [disabled]="!matricula || tipoId === 0 || !validarMatricula(matricula)">Añadir Vehículo</button>
+        <button (click)="goToHome()" class="fs-5 btn btn-success m-3">Iniciar sesión</button>
       </div>
+
+      
     </form>
   </div>
 </div>
