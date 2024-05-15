@@ -14,6 +14,8 @@ Trabajo final Grado Superior Desarrollo de apliaciones Web, Adrián Sanz Sandova
 
 "/api/vehiculos/matricula/{matricula}": Obtiene un vehiculo por su matricula.
 
+"/api/vehiculos/uid/{uid}": Obtiene un vehiculo por su id.
+
 ### Con petición POST
 
 "/api/vehiculos/{tipoId}": Se le proporciona un objeto vehiculo y el id del tipo de vehiculo que es, y añade un vehiculo con su tipo a la tabla.
@@ -38,7 +40,7 @@ Trabajo final Grado Superior Desarrollo de apliaciones Web, Adrián Sanz Sandova
 
 "/tickets/{idTicket}": Obtiene un ticket por su ID.
 
-"/tickets/matricula/{matricula}": Obitiene los tickets asociados a una matricula.
+"/tickets/matricula/{matricula}": Obitiene los tickets asociados a una matricula ordenados por fecha.
 
 "/tickets/pagados": Obtiene los tickets en estado "pagado".
 
@@ -51,6 +53,3 @@ Trabajo final Grado Superior Desarrollo de apliaciones Web, Adrián Sanz Sandova
 ### Con petición PUT (En proceso)
 
 "/tickets/{id}/pagado": Cambia el estado del ticket con ese id a "pagado".
-=======
-Trabajo final Grado Superior Desarrollo de apliaciones Web, Adrián Sanz Sandoval.
->>>>>>> 4c9cd598a4d4fc11a4dd1904e5f022470bb72fd6
