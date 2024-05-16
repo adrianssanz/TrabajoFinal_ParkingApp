@@ -10,12 +10,13 @@ export class LoginService {
   constructor(private router: Router) {}
 
   token: string = '';
-  uid: string='';
+  uid: string = '';
 
   login(email: string, password: string) {
-    return firebase
-      .auth()
-      .signInWithEmailAndPassword(email, password);
+    return firebase.auth().signInWithEmailAndPassword(email, password);
   }
 
+  register(email: string, password: string) {
+    return firebase.auth().createUserWithEmailAndPassword(email, password);
+  }
 }
