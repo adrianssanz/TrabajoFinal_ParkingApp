@@ -30,18 +30,23 @@ export class AddVehiculoComponent implements OnInit {
     this.router.navigate(['/']);
   }
 
+  // Metodo para validar que la matricula introducida sigue el patron AAAAXXX
+  // siendo a un numero y x una letra
   validarMatricula(matricula: string): boolean {
     const patron = /^[0-9]{4}[a-z]{3}$/i;
     return patron.test(matricula);
   }
 
+  // Metodo para validar que el correo introducido sigue el patron de un correo eletronico
   validarEmail(email: string): boolean {
     const patron = /^[^\s@]+@[^\s@]+\.[^\s@]+$/i;
     return patron.test(email);
   }
 
+  // Metodo para validar que la contraseña cumple el patron introducido
+  // 8 caracteres, una mayuscula y una minuscula, un numero, y un caracter especial
   validarPassword(password: string): boolean{
-    const patron = /^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)[A-Za-z\d\-]+$/;
+    const patron = /^(?=.*[A-Z])(?=.*[a-z])(?=.*[0-9])(?=.*[!@#$%^&*()_+{}|:;'<>.,?/~\[\]=\-=]).{8,}$/;
     return patron.test(password);
   }
 
