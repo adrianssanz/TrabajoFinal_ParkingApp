@@ -16,21 +16,26 @@ export class ListaTicketsComponent implements OnInit {
 
   constructor(private dataService: DataService, private apiService: ApiService, private router: Router,) {}
 
+  // Inicializa la matricula seleccionada recogiendola del dataservice
+  // Carga los tickets de la matricula seleccionada
   ngOnInit(): void {
     this.selectedMatricula = this.dataService.getSelectedMatricula();
     this.loadTickets(this.selectedMatricula);
   }
 
+  // Vuelve al login y establece la matricula vacia para "cerrar" la sesión.
   goToHome(): void {
     this.router.navigate(['/']);
     this.dataService.setSelectedMatricula('');
     console.log("Sesión cerrada.");
   }
 
+  // Redirige al componente dashboard en ruta /dashboard
   goToDashboard(): void{
     this.router.navigate(['/dashboard']);
   }
 
+  // Metodo para añadir un ticket nuevo en caso de no haber ninguno
   nuevoTicket(): void {
     this.apiService.agregarTicket(this.selectedMatricula).subscribe(
       (response) => {
@@ -46,6 +51,8 @@ export class ListaTicketsComponent implements OnInit {
     );
   }
 
+  // Carga los tickets de la matricula seleccionada mediante el apiservice
+  // que accede a la api
   loadTickets(matricula: String): void {
     this.apiService.getTickets(matricula).subscribe(
       (data: any[]) => {

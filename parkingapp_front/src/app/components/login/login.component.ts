@@ -27,6 +27,8 @@ export class LoginComponent implements OnInit {
     
   }
 
+  // Metodo para obtener la matricula por uid, la obtiene mediante apiservice y la
+  // almacena en el dataservice para ser usada en el componente dashboard
   getMatricula(uid: string){
     this.apiService.getVehiculoByUid(uid).subscribe((data:any)=>{
       this.dataService.setSelectedMatricula(data.matricula);
@@ -35,6 +37,8 @@ export class LoginComponent implements OnInit {
     })
   }
 
+  // Metodo para login, mediante el servicio de firebase logea usando email y contraseña
+  // Obtiene el uid del usuario logeado y lo envia al metodo getMatricula
   login(): void {
     this.loginService.login(this.email, this.password).then((response) => {
       this.getMatricula(response.user?.uid || '');
