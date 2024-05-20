@@ -1,8 +1,8 @@
-<div *ngIf="ticketData" class="rounded text-black p-2 m-2" [ngClass]="{'bg-success': ticketData.estado === 'pagado', 'bg-danger': ticketData.estado !== 'pagado'}">  
+<div *ngIf="ticketData" class="rounded text-black p-2 m-2" [ngClass]="{'bg-success': ticketData.estado === 'terminado', 'bg-danger': ticketData.estado !== 'terminado'}">  
   <div class="border border-1 p-3 bg-white">
     <h2>Detalles del Ticket</h2>
     <p><strong>ID Ticket:</strong> {{ ticketData.id }}</p>
-    <p [ngClass]="{'text-success': ticketData.estado === 'pagado', 'text-danger': ticketData.estado !== 'pagado'}"><strong>Estado:</strong> {{ ticketData.estado === 'pagado' ? 'Pagado' : 'No pagado' }}</p>
+    <p [ngClass]="{'text-success': ticketData.estado === 'terminado', 'text-danger': ticketData.estado !== 'en_curso'}"><strong>Estado:</strong> {{ ticketData.estado === 'terminado' ? 'Terminado' : 'En curso' }}</p>
     <p><strong>Precio por hora:</strong> {{ ticketData.vehiculo.tipoVehiculo.tarifaHora }}</p>
     <p><strong>Hora de Inicio:</strong> {{ ticketData.horaInicio | date:'dd/MM/yyyy HH:mm:ss' }}</p>
     <p><strong>Hora de Fin:</strong> {{ ticketData.horaFin ? (ticketData.horaFin | date:'dd/MM/yyyy HH:mm:ss') : 'Ticket en curso' }}</p>

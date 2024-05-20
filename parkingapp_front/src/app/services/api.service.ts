@@ -30,7 +30,7 @@ export class ApiService {
     return this.http.get(`${this.apiUrl}/tickets/matricula/${matricula}`); 
   }
 
-  agregarTicket(matricula: String): Observable<any> {
-    return this.http.post<any>(`${this.apiUrl}/tickets/${matricula}`, null);
+  agregarTicket(ticket: any, matricula: String): Observable<any> {
+    return this.http.post<any>(`${this.apiUrl}/tickets/${matricula}`, ticket);
   }
 }

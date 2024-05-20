@@ -34,18 +34,28 @@ export class DashboardComponent implements OnInit {
   }
 
   nuevoTicket(): void {
-    this.apiService.agregarTicket(this.selectedMatricula).subscribe(
+    const horaInicioDate = new Date();
+    const ticket: { horaInicio?: string; horaFin?: string } = {};
+
+    const horaFinDate = new Date(horaInicioDate);
+    horaFinDate.setHours(horaFinDate.getHours() + 2);
+
+    const horaFin = horaFinDate.toISOString();
+
+    ticket.horaFin = horaFin;
+    ticket.horaInicio = horaInicioDate.toISOString();
+
+    this.apiService.agregarTicket(ticket, this.selectedMatricula).subscribe(
       (response) => {
         this.dataService.setTicketAñadido(response);
-        this.mensaje = "Ticket añadido con éxito.";
+        this.mensaje = 'Ticket añadido con éxito.';
         console.log('Ticket agregado:', response);
-        this.router.navigate(['/dashboard/ticket']);      
+        this.router.navigate(['/dashboard/ticket']);
       },
       (error) => {
         console.error('Error al agregar el ticket:', error.error);
-        this.router.navigate(['/dashboard/ticket']);  
+        this.router.navigate(['/dashboard/ticket']);
       }
     );
   }
 }
-

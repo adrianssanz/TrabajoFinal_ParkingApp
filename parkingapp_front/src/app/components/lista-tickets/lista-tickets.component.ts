@@ -36,7 +36,7 @@ export class ListaTicketsComponent implements OnInit {
   }
 
   // Metodo para añadir un ticket nuevo en caso de no haber ninguno
-  nuevoTicket(): void {
+  /*nuevoTicket(): void {
     this.apiService.agregarTicket(this.selectedMatricula).subscribe(
       (response) => {
         this.dataService.setTicketAñadido(response);
@@ -49,7 +49,7 @@ export class ListaTicketsComponent implements OnInit {
         this.router.navigate(['/dashboard/ticket']);  
       }
     );
-  }
+  }*/
 
   // Carga los tickets de la matricula seleccionada mediante el apiservice
   // que accede a la api
