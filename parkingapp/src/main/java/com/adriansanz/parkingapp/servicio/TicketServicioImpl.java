@@ -56,23 +56,27 @@ public class TicketServicioImpl implements TicketServicio {
     }
 
     @Override
-    public Ticket addTicketNoPagado(String matricula) {
+    public Ticket addTicketNoPagado(Ticket ticket, String matricula) {
         Vehiculo vehiculo = vehiculoRepositorio.findByMatricula(matricula);
-        Ticket ticket = new Ticket();
-        if (vehiculo == null) {
+       if (vehiculo == null) {
             throw new ParkingNotFoundException("No se encontró vehículo con esa matrícula: " + matricula);
+            
         }
 
-        List<Ticket> ticketsNoPagados = ticketRepositorio.findByVehiculoAndEstado(vehiculo, "no_pagado");
+        List<Ticket> ticketsNoPagados = ticketRepositorio.findByVehiculoAndEstado(vehiculo, "en_curso");
         if (!ticketsNoPagados.isEmpty()) {
             throw new ParkingNotFoundException(
-                    "El vehículo con matrícula " + matricula + " tiene un ticket no pagado.");
+                    "El vehículo con matrícula " + vehiculo.getMatricula() + " tiene un ticket en curso.");
         }
 
-        ticket.setHoraInicio(new Date());
+        long tiempoMilisegundos = ticket.getHoraFin().getTime() - ticket.getHoraInicio().getTime();
+        long horas = tiempoMilisegundos / (1000 * 60 * 60);
+
+        double precio = horas * vehiculo.getTipoVehiculo().getTarifaHora();
+
         ticket.setVehiculo(vehiculo);
-        ticket.setPrecio(vehiculo.getTipoVehiculo().getTarifaHora());
-        ticket.setEstado("no_pagado");
+        ticket.setPrecio(precio);
+        ticket.setEstado("en_curso");
         return ticketRepositorio.save(ticket);
     }
 
