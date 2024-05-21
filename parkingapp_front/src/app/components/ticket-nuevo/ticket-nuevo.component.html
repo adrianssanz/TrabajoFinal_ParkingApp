@@ -1,9 +1,13 @@
 <div *ngIf="ticketData" class="border border-1 p-2">
     <h2>Detalles del Ticket</h2>
-    <p>ID Ticket: {{ ticketData.id }}</p>
-    <p>Matrícula: {{ ticketData.vehiculo.matricula }}</p>
-    <p>Precio por hora: {{ ticketData.precio }}</p>
-    <p>Hora de Inicio: {{ ticketData.horaInicio | date:'dd/MM/yyyy HH:mm:ss' }}</p>
+    <div class="text-left">
+      <p>ID Ticket: {{ ticketData.id }}</p>
+      <p>Matrícula: {{ ticketData.vehiculo.matricula }}</p>
+      <p>Precio por hora: {{ ticketData.vehiculo.tipoVehiculo.tarifaHora }} euros</p>
+      <p>Hora de Inicio: {{ ticketData.horaInicio | date:'dd/MM/yyyy HH:mm:ss' }}</p>
+      <p>Hora de Fin: {{ ticketData.horaFin | date:'dd/MM/yyyy HH:mm:ss' }}</p>
+      <p><strong>Precio final:</strong> {{ ticketData.precio }} euros</p>
+    </div>
   </div>
   
   <div *ngIf="!ticketData">
