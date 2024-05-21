@@ -1,21 +1,21 @@
 <div class="fondo-coches d-flex justify-content-center align-items-center" style="height: 100vh;">
-  <div class="border border-2 rounded p-3 text-center text-white bg-warning">
-    <h2 class="h1 m-5">ParkingAPP</h2>
+  <div class="border border-2 rounded p-3 text-white bg-warning">
+    <h2 class="h1 m-5 text-center">ParkingAPP</h2>
     <hr class="border-white opacity-100 rounded">
     <form (ngSubmit)="login()">
       <div class="form-group m-4">
         <p class="fs-3">Correo:</p>
         <input type="email" class="form-control" placeholder="Correo" id="email" name="email" [(ngModel)]="email"
-          required [ngClass]="{ 'invalido': !email }">
-        <div *ngIf="!email" class="alert alert-danger mt-2" role="alert">
+          required [ngClass]="{ 'is-invalid': !email, 'is-valid': email }">
+        <div *ngIf="!email" class="alert alert-danger mt-1 p-2" role="alert">
           Introduzca un correo electronico.
         </div>
       </div>
       <div class="form-group m-4">
         <p class="fs-3">Contraseña:</p>
         <input type="password" class="form-control" placeholder="Contraseña" id="password" name="password"
-          [(ngModel)]="password" required [ngClass]="{ 'invalido': !password }">
-        <div *ngIf="!password" class="alert alert-danger mt-2" role="alert">
+          [(ngModel)]="password" required [ngClass]="{ 'is-invalid': !password, 'is-valid': password }">
+        <div *ngIf="!password" class="alert alert-danger mt-1 p-2" role="alert">
           Introduzca una contraseña.
         </div>
       </div>
