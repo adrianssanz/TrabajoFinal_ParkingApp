@@ -14,6 +14,8 @@ import { TicketNuevoComponent } from './components/ticket-nuevo/ticket-nuevo.com
 import { TicketComponent } from './components/ticket/ticket.component';
 import { LoginService } from './services/login.service';
 import { CookieService } from 'ngx-cookie-service';
+import { ModalComponent } from './components/modal/modal.component';
+import { MatDialogModule } from '@angular/material/dialog';
 
 @NgModule({
   declarations: [
@@ -24,13 +26,15 @@ import { CookieService } from 'ngx-cookie-service';
     AddVehiculoComponent,
     TicketNuevoComponent,
     ListaTicketsComponent,
-    TicketComponent
+    TicketComponent,
+    ModalComponent
   ],
   imports: [
     BrowserModule,
     HttpClientModule,
     FormsModule,
-    AppRoutingModule
+    AppRoutingModule,
+    MatDialogModule
   ],
   providers: [LoginService, CookieService],
   bootstrap: [AppComponent]
