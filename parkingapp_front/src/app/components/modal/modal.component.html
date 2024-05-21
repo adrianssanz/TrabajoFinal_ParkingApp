@@ -1,0 +1,16 @@
+<div class="card">
+    <div class="card-body">
+      <h5 class="card-title text-center">Duracción del ticket</h5>
+      <hr>
+      <p class="card-text fs-4 text-center">Seleccione la duracción del ticket.</p>
+      <input type="range" class="form-range" [(ngModel)]="duracion" id="customRange1" min="1" value="1" step="1" max="10">
+      <div class="d-flex justify-content-center">
+        <p class="border border-1 m-1 p-2 rounded bg-primary text-white text-center w-25">{{ duracion }} {{ duracion < 2 ? 'hora' : 'horas' }}</p>
+      </div>
+      <div class="d-flex justify-content-center my-2">
+        <button class="fs-5 btn btn-success m-3 text-white" (click)="confirmar()">Confirmar</button>
+        <button class="fs-5 btn btn-danger m-3 text-white" (click)="closeModal()">Cancelar</button>
+      </div>
+      
+    </div>
+  </div>
