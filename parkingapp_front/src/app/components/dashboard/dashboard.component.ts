@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { DataService } from '../../services/data.service';
 import { Router } from '@angular/router';
 import { ApiService } from '../../services/api.service';
+import { MatDialog } from '@angular/material/dialog';
+import { ModalComponent } from '../modal/modal.component';
 
 @Component({
   selector: 'app-dashboard',
@@ -16,11 +18,16 @@ export class DashboardComponent implements OnInit {
   constructor(
     private dataService: DataService,
     private router: Router,
-    private apiService: ApiService
+    private apiService: ApiService,
+    private matDialog: MatDialog
   ) { }
 
   ngOnInit(): void {
     this.selectedMatricula = this.dataService.getSelectedMatricula();
+  }
+
+  abrirModal():void{
+    this.matDialog.open(ModalComponent);
   }
 
   goToHome(): void {
