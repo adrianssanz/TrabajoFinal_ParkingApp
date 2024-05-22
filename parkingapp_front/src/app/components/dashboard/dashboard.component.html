@@ -1,25 +1,31 @@
 <div class="fondo-coches d-flex justify-content-center align-items-center" style="height: 100vh;">
   <div class="border border-2 rounded p-3 text-center text-white bg-warning">
-    <h2 class="h1 m-5">Bienvenido <span class="border border-1 rounded p-2 bg-white text-warning">{{ selectedMatricula }}</span></h2>
+    <h2 class="h1 m-5">Bienvenido <span
+        class="border border-1 rounded p-2 bg-white text-warning">{{ selectedMatricula }} <i class="bi bi-car-front-fill"></i></span></h2>
+    <div class="d-flex flex-row justify-content-around">
+      <p class="fs-5">Tipo de vehiculo: 
+        {{ vehiculo.tipoVehiculo.id === 1 
+          ? 'Coche' : 2 
+          ? 'Moto' : 3 
+          ? 'Furgoneta': '' }}
+      </p>
+      <p class="fs-5">Tarifa por hora: {{ vehiculo.tipoVehiculo.tarifaHora }} euros</p>
+    </div>
+    
     <hr class="border-white opacity-100 rounded">
     <p class="fs-3">¿Qué quieres hacer hoy?</p>
     <div class="d-flex justify-content-center">
       <button class="fs-5 btn btn-primary m-3 text-white" (click)="goToListaTickets()">Ver mis tickets</button>
-      <button class="fs-5 btn btn-secondary m-3 text-white">Pagar un ticket</button>
-      <button class="fs-5 btn btn-primary m-3 text-white" (click)="nuevoTicket()">Nuevo ticket</button>
+      <button class="fs-5 btn btn-secondary m-3 text-white" (click)="abrirModalAmpliar()">Pagar un ticket</button>
       <button class="fs-5 btn btn-primary m-3 text-white" (click)="abrirModal()">Nuevo ticket</button>
-
     </div>
-    <div *ngIf="mensaje" class="alert mt-2" [ngClass]="{'alert-danger': mensaje.startsWith('Error'), 'alert-success': mensaje.startsWith('Ticket añadido')}">
-  {{ mensaje }}
-</div>
 
-<div class="border border-2 rounded p-3 text-center text-black bg-white">
-  <router-outlet />
-</div>
+    <div class="border border-2 rounded p-3 text-center text-black bg-white">
+      <router-outlet />
+    </div>
 
     <div>
-      <button (click)="goToHome()" class="fs-5 btn btn-success m-3">Cerrar sesión</button>
+      <button (click)="goToHome()" class="fs-5 btn btn-success m-3"><i class="bi bi-box-arrow-right"></i> Cerrar sesión</button>
     </div>
   </div>
 </div>
