@@ -40,8 +40,12 @@ export class LoginComponent implements OnInit {
   getMatricula(uid: string){
     this.apiService.getVehiculoByUid(uid).subscribe((data:any)=>{
       this.dataService.setSelectedMatricula(data.matricula);
-      console.log("Inicio de sesión exitoso.");
-      this.router.navigate(["/dashboard"]);
+      this.apiService.getVehiculoByMatricula(data.matricula).subscribe((data:any)=>{
+        this.dataService.setVehiculo(data);
+        console.log("Inicio de sesión exitoso.");
+        this.router.navigate(["/dashboard"]);
+      })
+      
     })
   }
 
