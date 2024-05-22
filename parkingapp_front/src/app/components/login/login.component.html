@@ -1,6 +1,6 @@
 <div class="fondo-coches d-flex justify-content-center align-items-center" style="height: 100vh;">
   <div class="border border-2 rounded p-3 text-white bg-warning">
-    <h2 class="h1 m-5 text-center">ParkingAPP</h2>
+    <h2 class="h1 m-5 text-center">ParkingAPP <i class="bi bi-car-front-fill"></i></h2>
     <hr class="border-white opacity-100 rounded">
     <form (ngSubmit)="login()">
       <div class="form-group m-4">
@@ -13,12 +13,18 @@
       </div>
       <div class="form-group m-4">
         <p class="fs-3">Contraseña:</p>
-        <input type="password" class="form-control" placeholder="Contraseña" id="password" name="password"
-          [(ngModel)]="password" required [ngClass]="{ 'is-invalid': !password, 'is-valid': password }">
+        <div class="input-group">
+          <input [type]="campoPassword" class="form-control" placeholder="Contraseña" id="password" name="password"
+            [(ngModel)]="password" required [ngClass]="{ 'is-invalid': !password, 'is-valid': password }">
+          <button class="btn btn-primary" type="button" (click)="botonMostrarPassword()">
+            <i class="bi bi-eye{{ mostrarPassword ? '-slash' : '' }}"></i>
+          </button>
+        </div>
         <div *ngIf="!password" class="alert alert-danger mt-1 p-2" role="alert">
           Introduzca una contraseña.
         </div>
       </div>
+      
       <div *ngIf="mensajeError" class="alert alert-danger mt-2" role="alert">
         {{mensajeError}}
       </div>
@@ -26,7 +32,7 @@
 
         <button type="submit" class="fs-5 btn btn-primary m-3" [disabled]="!email || !password">Iniciar
           sesión</button>
-        <button (click)="goToAddVehiculo()" class="fs-5 btn btn-success m-3">Añadir vehículo</button>
+        <button (click)="goToAddVehiculo()" class="fs-5 btn btn-success m-3">Registrar</button>
       </div>
     </form>
   </div>

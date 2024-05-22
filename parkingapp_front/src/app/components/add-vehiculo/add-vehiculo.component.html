@@ -1,13 +1,14 @@
 <div class="fondo-coches d-flex justify-content-center align-items-center" style="height: 100vh;">
   <div class="border border-2 rounded p-3 text-white bg-warning">
-    <h2 class="h1 m-5 text-center">Añadir Vehículo</h2>
+    <h2 class="h1 m-5 text-center">Añadir Vehículo <i class="bi bi-person-plus-fill"></i></h2>
     <hr class="border-white opacity-100 rounded">
     <form (ngSubmit)="onSubmit()">
       <div class="form-group d-flex">
         <div class="w-50 p-3">
           <p class="fs-3">Correo:</p>
           <input type="email" class="form-control" placeholder="Correo Electronico" id="email" name="email"
-            [(ngModel)]="email" required [ngClass]="{ 'is-invalid': !email || !validarEmail(email), 'is-valid': email }">
+            [(ngModel)]="email" required
+            [ngClass]="{ 'is-invalid': !email || !validarEmail(email), 'is-valid': email }">
           <div *ngIf="!email" class="alert alert-danger mt-1 p-2" role="alert">
             Introduzca un correo.
           </div>
@@ -17,8 +18,13 @@
         </div>
         <div class="w-50 p-3">
           <p class="fs-3">Contraseña:</p>
-          <input type="password" class="form-control" placeholder="Contraseña" id="password" name="password"
-            [(ngModel)]="password" required [ngClass]="{ 'is-invalid': !password || !validarPassword(password), 'is-valid': password }">
+          <div class="input-group">
+            <input [type]="campoPassword" class="form-control" placeholder="Contraseña" id="password" name="password"
+              [(ngModel)]="password" required [ngClass]="{ 'is-invalid': !password, 'is-valid': password }">
+            <button class="btn btn-primary" type="button" (click)="botonMostrarPassword()">
+              <i class="bi bi-eye{{ mostrarPassword ? '-slash' : '' }}"></i>
+            </button>
+          </div>
           <div *ngIf="!password" class="alert alert-danger mt-1 p-2" role="alert">
             Introduzca una contraseña.
           </div>
@@ -35,7 +41,9 @@
         <div class="w-50 p-3">
           <p class="fs-3">Matrícula:</p>
           <input type="text" class="form-control" id="matricula" placeholder="Matricula" name="matricula"
-            [(ngModel)]="matricula" required [ngClass]="{ 'is-invalid': !matricula || !validarMatricula(matricula), 'is-valid': matricula }" maxlength="7">
+            [(ngModel)]="matricula" required
+            [ngClass]="{ 'is-invalid': !matricula || !validarMatricula(matricula), 'is-valid': matricula }"
+            maxlength="7">
           <div *ngIf="!matricula" class="alert alert-danger mt-1 p-2" role="alert">
             Introduzca una matrícula.
           </div>
@@ -47,7 +55,7 @@
         <div class="w-50 p-3">
           <p class="fs-3">Tipo de vehiculo:</p>
           <select class="form-select rounded" id="tipo" name="tipo" [(ngModel)]="tipoId" required
-          [ngClass]="{ 'is-invalid': !tipoId, 'is-valid': tipoId }">
+            [ngClass]="{ 'is-invalid': !tipoId, 'is-valid': tipoId }">
             <option value="1">Turismo</option>
             <option value="2">Moto</option>
             <option value="3">Furgoneta</option>
@@ -67,7 +75,8 @@
 
       <div class="d-flex justify-content-center">
         <button type="submit" class="fs-5 btn btn-primary m-3"
-          [disabled]="!matricula || tipoId === 0 || !validarMatricula(matricula) || !email || !password || !validarEmail(email) || !validarPassword(password)">Añadir Vehículo</button>
+          [disabled]="!matricula || tipoId === 0 || !validarMatricula(matricula) || !email || !password || !validarEmail(email) || !validarPassword(password)">Registrar
+          Vehículo</button>
         <button (click)="goToHome()" class="fs-5 btn btn-success m-3">Iniciar sesión</button>
       </div>
 

@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { LoginService } from '../../services/login.service';
 import { DataService } from '../../services/data.service';
 
+
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -15,6 +16,8 @@ export class LoginComponent implements OnInit {
   email: string = '';
   password: string = '';
   mensajeError: string ='';
+  campoPassword: string = 'password';
+  mostrarPassword: boolean = false;
 
   constructor(
     private apiService: ApiService,
@@ -25,6 +28,11 @@ export class LoginComponent implements OnInit {
 
   ngOnInit(): void {
     
+  }
+
+  botonMostrarPassword() {
+    this.mostrarPassword = !this.mostrarPassword;
+    this.campoPassword = this.mostrarPassword ? 'text' : 'password';
   }
 
   // Metodo para obtener la matricula por uid, la obtiene mediante apiservice y la

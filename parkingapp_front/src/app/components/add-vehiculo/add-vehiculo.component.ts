@@ -16,6 +16,8 @@ export class AddVehiculoComponent implements OnInit {
   formInvalid: boolean = false;
   mensaje: string = '';
   tipoMensaje: number = 0;
+  campoPassword: string = 'password';
+  mostrarPassword: boolean = false;
 
   constructor(
     private apiService: ApiService, 
@@ -24,6 +26,11 @@ export class AddVehiculoComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+  }
+
+  botonMostrarPassword() {
+    this.mostrarPassword = !this.mostrarPassword;
+    this.campoPassword = this.mostrarPassword ? 'text' : 'password';
   }
 
   goToHome(): void {
