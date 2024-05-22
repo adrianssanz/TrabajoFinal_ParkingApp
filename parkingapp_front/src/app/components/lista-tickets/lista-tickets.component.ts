@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { DataService } from '../../services/data.service';
 import { ApiService } from '../../services/api.service';
 import { Router } from '@angular/router';
+import { MatDialog } from '@angular/material/dialog';
+import { ModalComponent } from '../modal/modal.component';
 
 @Component({
   selector: 'app-lista-tickets',
@@ -10,11 +12,16 @@ import { Router } from '@angular/router';
 })
 export class ListaTicketsComponent implements OnInit {
   selectedMatricula: String = '';
-
+  vehiculo: any;
   mensaje: String = '';
   tickets: any[] = [];
 
-  constructor(private dataService: DataService, private apiService: ApiService, private router: Router,) {}
+  constructor(
+    private dataService: DataService, 
+    private apiService: ApiService, 
+    private router: Router,
+    private matDialog: MatDialog
+  ) {}
 
   // Inicializa la matricula seleccionada recogiendola del dataservice
   // Carga los tickets de la matricula seleccionada
@@ -35,21 +42,10 @@ export class ListaTicketsComponent implements OnInit {
     this.router.navigate(['/dashboard']);
   }
 
-  // Metodo para añadir un ticket nuevo en caso de no haber ninguno
-  /*nuevoTicket(): void {
-    this.apiService.agregarTicket(this.selectedMatricula).subscribe(
-      (response) => {
-        this.dataService.setTicketAñadido(response);
-        this.mensaje = "Ticket añadido con éxito.";
-        console.log('Ticket agregado:', response);
-        this.router.navigate(['/dashboard/ticket']);      
-      },
-      (error) => {
-        console.error('Error al agregar el ticket:', error.error);
-        this.router.navigate(['/dashboard/ticket']);  
-      }
-    );
-  }*/
+  // Metodo para abrir el modal para añadir un ticket nuevo
+  abrirModal():void{
+    this.matDialog.open(ModalComponent);
+  }
 
   // Carga los tickets de la matricula seleccionada mediante el apiservice
   // que accede a la api

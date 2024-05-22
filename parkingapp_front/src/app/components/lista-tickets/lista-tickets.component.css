@@ -4,3 +4,11 @@
     background-position: center;
     position: relative;
   }
+
+  .scroll {
+    max-height: 400px;
+    overflow-y: auto;
+  }
+  
+  
+  
