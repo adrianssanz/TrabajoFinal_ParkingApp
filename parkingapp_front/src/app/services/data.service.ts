@@ -1,20 +1,21 @@
 import { Injectable } from '@angular/core';
+import { Vehiculo } from '../interfaces/vehiculo';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class DataService {
-  private selectedMatricula: String = '';
-
+  private selectedMatricula: string = '';
   private ticketAñadido: any;
+  private vehiculo!: Vehiculo;
 
-  constructor() { }
+  constructor() {}
 
-  setSelectedMatricula(matricula: String): void {
+  setSelectedMatricula(matricula: string): void {
     this.selectedMatricula = matricula;
   }
 
-  getSelectedMatricula(): String {
+  getSelectedMatricula(): string {
     return this.selectedMatricula;
   }
 
@@ -24,5 +25,13 @@ export class DataService {
 
   getTicketAñadido(): any {
     return this.ticketAñadido;
+  }
+
+  setVehiculo(vehiculo: Vehiculo): void {
+    this.vehiculo = vehiculo;
+  }
+
+  getVehiculo(): Vehiculo {
+    return this.vehiculo;
   }
 }

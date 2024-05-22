@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { Vehiculo } from '../interfaces/vehiculo';
 
 @Injectable({
   providedIn: 'root'
@@ -18,8 +19,8 @@ export class ApiService {
     return this.http.get(`${this.apiUrl}/vehiculos/uid/${uid}`);
   }
 
-  getVehiculoByMatricula(matricula: string){
-    return this.http.get(`${this.apiUrl}/vehiculos/matricula/${matricula}`);
+  getVehiculoByMatricula(matricula: string): Observable<Vehiculo>{
+    return this.http.get<Vehiculo>(`${this.apiUrl}/vehiculos/matricula/${matricula}`);
   }
 
   agregarVehiculo(vehiculo: any, tipoId: number): Observable<any> {
