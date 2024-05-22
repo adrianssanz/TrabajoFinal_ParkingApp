@@ -4,10 +4,12 @@
         class="border border-1 rounded p-2 bg-white text-warning">{{ selectedMatricula }} <i class="bi bi-car-front-fill"></i></span></h2>
     <div class="d-flex flex-row justify-content-around">
       <p class="fs-5">Tipo de vehiculo: 
-        {{ vehiculo.tipoVehiculo.id === 1 
-          ? 'Coche' : 2 
-          ? 'Moto' : 3 
-          ? 'Furgoneta': '' }}
+        {{ 
+          vehiculo.tipoVehiculo.id === 1 ? 'Coche' 
+          : vehiculo.tipoVehiculo.id === 2 ? 'Moto' 
+          : vehiculo.tipoVehiculo.id === 3 ? 'Furgoneta' 
+          : '' 
+      }}
       </p>
       <p class="fs-5">Tarifa por hora: {{ vehiculo.tipoVehiculo.tarifaHora }} euros</p>
     </div>
