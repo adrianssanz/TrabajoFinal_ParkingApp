@@ -16,7 +16,6 @@ import org.springframework.web.bind.annotation.RestController;
 import com.adriansanz.parkingapp.servicio.TicketServicio;
 
 import com.adriansanz.parkingapp.entidades.Ticket;
-import com.adriansanz.parkingapp.entidades.Vehiculo;
 
 @RestController
 @RequestMapping("/api")
@@ -26,14 +25,14 @@ public class TicketController {
     private TicketServicio ticketServicio;
 
     @PostMapping("/tickets/{matricula}")
-    public ResponseEntity<Ticket> addTicketNoPagado(@RequestBody Ticket ticket, @PathVariable String matricula) {
-        Ticket nuevoTicket = ticketServicio.addTicketNoPagado(ticket, matricula);
+    public ResponseEntity<Ticket> addTicketEnCurso(@RequestBody Ticket ticket, @PathVariable String matricula) {
+        Ticket nuevoTicket = ticketServicio.addTicketEnCurso(ticket, matricula);
         return ResponseEntity.status(HttpStatus.CREATED).body(nuevoTicket);
     }
 
     @PutMapping("/tickets/{id}/pagado")
-    public ResponseEntity<Ticket> updateTicketPagado(@PathVariable Long id) {
-        Ticket ticketPagado = ticketServicio.updateTicketPagado(id);
+    public ResponseEntity<Ticket> updateTicketTerminado(@PathVariable Long id) {
+        Ticket ticketPagado = ticketServicio.updateTicketTerminado(id);
         return ResponseEntity.ok().body(ticketPagado);
     }
 
@@ -52,14 +51,14 @@ public class TicketController {
         return ticketServicio.getTicketsByMatricula(matricula);
     }
 
-    @GetMapping("/tickets/pagados")
+    @GetMapping("/tickets/terminados")
     public List<Ticket> getTicketsPagados() {
-        return ticketServicio.getTicketsPorEstado("pagado");
+        return ticketServicio.getTicketsPorEstado("terminado");
     }
 
-    @GetMapping("/tickets/no-pagados")
+    @GetMapping("/tickets/en-curso")
     public List<Ticket> getTicketsNoPagados() {
-        return ticketServicio.getTicketsPorEstado("no_pagado");
+        return ticketServicio.getTicketsPorEstado("en_curso");
     }
 
 }

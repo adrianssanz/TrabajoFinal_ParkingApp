@@ -6,8 +6,8 @@ import com.adriansanz.parkingapp.entidades.Ticket;
 
 public interface TicketServicio {
 
-    public Ticket addTicketNoPagado(Ticket ticket, String matricula);
-    public Ticket updateTicketPagado(Long id);
+    public Ticket addTicketEnCurso(Ticket ticket, String matricula);
+    public Ticket updateTicketTerminado(Long id);
     public List<Ticket> getTickets();
     public Ticket getTicketById(Long id);
     public List<Ticket> getTicketsByMatricula(String matricula);

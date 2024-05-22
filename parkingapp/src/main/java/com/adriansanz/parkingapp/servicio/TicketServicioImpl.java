@@ -56,7 +56,7 @@ public class TicketServicioImpl implements TicketServicio {
     }
 
     @Override
-    public Ticket addTicketNoPagado(Ticket ticket, String matricula) {
+    public Ticket addTicketEnCurso(Ticket ticket, String matricula) {
         Vehiculo vehiculo = vehiculoRepositorio.findByMatricula(matricula);
        if (vehiculo == null) {
             throw new ParkingNotFoundException("No se encontró vehículo con esa matrícula: " + matricula);
@@ -81,11 +81,11 @@ public class TicketServicioImpl implements TicketServicio {
     }
 
     @Override
-    public Ticket updateTicketPagado(Long id) {
+    public Ticket updateTicketTerminado(Long id) {
         Ticket ticket = ticketRepositorio.findById(id)
                 .orElseThrow(() -> new ParkingNotFoundException("No se encontró ningún ticket con el ID: " + id));
 
-        ticket.setEstado("pagado");
+        ticket.setEstado("terminado");
         ticket.setHoraFin(new Date());
 
         return ticketRepositorio.save(ticket);
