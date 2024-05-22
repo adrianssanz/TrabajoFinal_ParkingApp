@@ -3,6 +3,7 @@ import { MatDialogRef } from '@angular/material/dialog';
 import { ApiService } from '../../services/api.service';
 import { DataService } from '../../services/data.service';
 import { Router } from '@angular/router';
+import { Vehiculo } from '../../interfaces/vehiculo';
 
 @Component({
   selector: 'app-modal',
@@ -19,13 +20,24 @@ export class ModalComponent implements OnInit {
 
   ngOnInit(): void {
     this.selectedMatricula = this.dataService.getSelectedMatricula();
+    this.vehiculo = this.dataService.getVehiculo();
   }
 
+  tarifaHora: number = 0;
   duracion: number = 1;
+  precio!: number;
   selectedMatricula: String = '';
+  mensaje: string='';
+  vehiculo!: Vehiculo;
 
-  closeModal(): void {
+  calcularPrecio(){
+    this.tarifaHora = this.vehiculo.tipoVehiculo.tarifaHora;
+    this.precio= this.duracion* this.tarifaHora;
+  }
+
+  cerrarModal(): void {
     this.matDiaLogRef.close();
+    console.log(this.precio)
   }
 
   confirmar(): void {
@@ -43,7 +55,6 @@ export class ModalComponent implements OnInit {
     this.apiService.agregarTicket(ticket, this.selectedMatricula).subscribe(
       (response) => {
         this.dataService.setTicketAñadido(response);
-        //this.mensaje = 'Ticket añadido con éxito.';
         console.log('Ticket agregado:', response);
         this.matDiaLogRef.close();
         this.router.navigate(['/dashboard/ticket']);
@@ -51,7 +62,7 @@ export class ModalComponent implements OnInit {
       },
       (error) => {
         console.error('Error al agregar el ticket:', error.error);
-        this.router.navigate(['/dashboard/ticket']);
+        this.mensaje = 'Su vehiculo ya tiene un ticket activo.';
       }
     );
   }
