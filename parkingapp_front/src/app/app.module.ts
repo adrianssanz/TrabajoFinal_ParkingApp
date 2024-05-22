@@ -16,6 +16,7 @@ import { LoginService } from './services/login.service';
 import { CookieService } from 'ngx-cookie-service';
 import { ModalComponent } from './components/modal/modal.component';
 import { MatDialogModule } from '@angular/material/dialog';
+import { ModalAmpliarComponent } from './components/modal-ampliar/modal-ampliar.component';
 
 @NgModule({
   declarations: [
@@ -27,7 +28,8 @@ import { MatDialogModule } from '@angular/material/dialog';
     TicketNuevoComponent,
     ListaTicketsComponent,
     TicketComponent,
-    ModalComponent
+    ModalComponent,
+    ModalAmpliarComponent
   ],
   imports: [
     BrowserModule,

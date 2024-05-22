@@ -1,0 +1,22 @@
+<div class="card">
+    <div class="card-body">
+      <h5 class="card-title text-center">Ampliar Ticket</h5>
+      <hr>
+      <p class="card-text fs-4 text-center">¿Cuanto quiere ampliar su ticket?</p>
+      <input type="range" class="form-range" [(ngModel)]="duracion" id="customRange1" min="1" value="1" step="1" max="10">
+      <div class="d-flex justify-content-center">
+        <p class="border border-1 m-1 p-2 rounded bg-primary text-white text-center w-50">{{ duracion }}
+          {{ duracion < 2 ? 'hora' : 'horas' }} <i class="bi bi-clock-history"></i></p>
+      </div>
+      <div class="d-flex justify-content-center">
+        <button class="fs-5 btn btn-success m-3 text-white" (click)="confirmar()">Confirmar</button>
+        <button class="fs-5 btn btn-danger m-3 text-white" (click)="cerrarModal()">Cancelar</button>
+      </div>
+    </div>
+    <div *ngIf="mensaje" class="d-flex justify-content-center">
+      <div class="text-center p-2 border border-1 rounded alert alert-danger w-75">
+        {{mensaje}}
+      </div>
+    </div>
+  </div>
+  
