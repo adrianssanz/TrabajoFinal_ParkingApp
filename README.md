@@ -76,7 +76,7 @@ Back:
 ### Con petición POST
 ![API POST Badge](https://img.shields.io/badge/API-POST-yellow?style=for-the-badge)
 
-"/tickets/{matricula}": Crea un ticket en estado "no_pagado" asociado al coche con esa matricula, tambien comprueba si existe algun ticket "no_pagado".
+"/tickets/{matricula}": Crea un ticket en estado "en_curso" asociado al coche con esa matricula, tambien comprueba si existe algun ticket "en_curso".
 
 ### Con petición PUT
 ![API PUT Badge](https://img.shields.io/badge/API-PUT-orange?style=for-the-badge)
