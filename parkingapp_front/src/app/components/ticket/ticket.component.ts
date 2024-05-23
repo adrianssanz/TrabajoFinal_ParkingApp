@@ -9,6 +9,7 @@ export class TicketComponent {
   // Recoge los datos que mostrará en el componente ticket
   @Input() ticketData: any;
 
+  // Metodo para calcular la duracion del ticket y mostrarlo en el html
   calcularDuracion(): number {
     if (this.ticketData && this.ticketData.horaInicio && this.ticketData.horaFin) {
       const inicio = new Date(this.ticketData.horaInicio);
