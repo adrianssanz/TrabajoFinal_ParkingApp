@@ -10,7 +10,7 @@ import { DataService } from '../../services/data.service';
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css'],
 })
-export class LoginComponent implements OnInit {
+export class LoginComponent{
   uidUsuario: string = '';
   matriculaSeleccionada: string = '';
   email: string = '';
@@ -26,10 +26,7 @@ export class LoginComponent implements OnInit {
     private loginService: LoginService,
   ) {}
 
-  ngOnInit(): void {
-    
-  }
-
+  // Metodo para mostrar u ocultar la contraseña en el input
   botonMostrarPassword() {
     this.mostrarPassword = !this.mostrarPassword;
     this.campoPassword = this.mostrarPassword ? 'text' : 'password';
