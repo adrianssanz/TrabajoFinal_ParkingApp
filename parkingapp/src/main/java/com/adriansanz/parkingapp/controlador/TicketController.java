@@ -30,10 +30,10 @@ public class TicketController {
         return ResponseEntity.status(HttpStatus.CREATED).body(nuevoTicket);
     }
 
-    @PutMapping("/tickets/{id}/pagado")
-    public ResponseEntity<Ticket> updateTicketTerminado(@PathVariable Long id) {
-        Ticket ticketPagado = ticketServicio.updateTicketTerminado(id);
-        return ResponseEntity.ok().body(ticketPagado);
+    @PutMapping("/tickets/{idTicket}/terminado")
+    public ResponseEntity<Ticket> ampliarTicket(@RequestBody Ticket ticket, @PathVariable Long idTicket) {
+        Ticket ticketAmpliado = ticketServicio.ampliarTicket(ticket, idTicket);
+        return ResponseEntity.ok().body(ticketAmpliado);
     }
 
     @GetMapping("/tickets")
@@ -59,6 +59,11 @@ public class TicketController {
     @GetMapping("/tickets/en-curso")
     public List<Ticket> getTicketsNoPagados() {
         return ticketServicio.getTicketsPorEstado("en_curso");
+    }
+
+    @GetMapping("/tickets/en-curso/matricula/{matricula}")
+    public Ticket getTicketEnCurso(@PathVariable String matricula){
+        return ticketServicio.getTicketEnCurso(matricula);
     }
 
 }

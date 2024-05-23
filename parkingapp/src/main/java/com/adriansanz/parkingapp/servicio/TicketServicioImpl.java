@@ -58,16 +58,17 @@ public class TicketServicioImpl implements TicketServicio {
     @Override
     public Ticket addTicketEnCurso(Ticket ticket, String matricula) {
         Vehiculo vehiculo = vehiculoRepositorio.findByMatricula(matricula);
-       if (vehiculo == null) {
+        if (vehiculo == null) {
             throw new ParkingNotFoundException("No se encontró vehículo con esa matrícula: " + matricula);
-            
         }
 
-        List<Ticket> ticketsNoPagados = ticketRepositorio.findByVehiculoAndEstado(vehiculo, "en_curso");
-        if (!ticketsNoPagados.isEmpty()) {
+        Ticket ticketEnCurso = ticketRepositorio.findByVehiculoAndEstado(vehiculo, "en_curso");
+        if (ticketEnCurso != null) {
             throw new ParkingNotFoundException(
                     "El vehículo con matrícula " + vehiculo.getMatricula() + " tiene un ticket en curso.");
         }
+
+        // Calcular el precio, calculando la diferencia entre la hora de fin y la hora de inicio
 
         long tiempoMilisegundos = ticket.getHoraFin().getTime() - ticket.getHoraInicio().getTime();
         long horas = tiempoMilisegundos / (1000 * 60 * 60);
@@ -81,14 +82,39 @@ public class TicketServicioImpl implements TicketServicio {
     }
 
     @Override
-    public Ticket updateTicketTerminado(Long id) {
-        Ticket ticket = ticketRepositorio.findById(id)
-                .orElseThrow(() -> new ParkingNotFoundException("No se encontró ningún ticket con el ID: " + id));
+    public Ticket getTicketEnCurso(String matricula) {
+        Vehiculo vehiculo = vehiculoRepositorio.findByMatricula(matricula);
 
-        ticket.setEstado("terminado");
-        ticket.setHoraFin(new Date());
+        if (vehiculo == null) {
+            throw new ParkingNotFoundException("No se encontró vehículo con esa matrícula: " + matricula);
 
-        return ticketRepositorio.save(ticket);
+        }
+
+        Ticket ticketEnCurso = ticketRepositorio.findByVehiculoAndEstado(vehiculo, "en_curso");
+        if (ticketEnCurso == null) {
+            throw new ParkingNotFoundException(
+                    "El vehículo con matrícula " + vehiculo.getMatricula() + " no tiene un ticket en curso.");
+        }
+
+        return ticketEnCurso;
+    }
+
+    @Override
+    public Ticket ampliarTicket(Ticket ticket, Long idTicket) {
+
+        Ticket ticketEnCurso = ticketRepositorio.findById(idTicket)
+                .orElseThrow(() -> new ParkingNotFoundException("No se encontró ningún ticket con el ID: " + idTicket));
+
+        // Calcular el precio, calculando la diferencia entre la hora de fin y la hora de inicio
+
+        long tiempoMilisegundos = ticket.getHoraFin().getTime()-ticket.getHoraInicio().getTime();
+        long horas = tiempoMilisegundos / (1000 * 60 * 60);
+
+        double precio = horas * ticket.getVehiculo().getTipoVehiculo().getTarifaHora();
+        ticketEnCurso.setHoraFin(ticket.getHoraFin());
+        ticketEnCurso.setPrecio(precio);
+
+        return ticketRepositorio.save(ticketEnCurso);
     }
 
 }

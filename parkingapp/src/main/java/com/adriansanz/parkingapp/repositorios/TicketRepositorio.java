@@ -10,5 +10,5 @@ import com.adriansanz.parkingapp.entidades.Vehiculo;
 public interface TicketRepositorio extends JpaRepository<Ticket, Long>{
     List<Ticket> findByVehiculoMatriculaOrderByHoraInicioDesc(String matricula);
     List<Ticket> findByEstado(String estado);
-    List<Ticket> findByVehiculoAndEstado(Vehiculo vehiculo, String estado);
+    Ticket findByVehiculoAndEstado(Vehiculo vehiculo, String estado);
 }
