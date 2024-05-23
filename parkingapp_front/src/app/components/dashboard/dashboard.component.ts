@@ -5,6 +5,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { ModalComponent } from '../modal/modal.component';
 import { ModalAmpliarComponent } from '../modal-ampliar/modal-ampliar.component';
 import { Vehiculo } from '../../interfaces/vehiculo';
+import { ApiService } from '../../services/api.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -16,11 +17,13 @@ export class DashboardComponent implements OnInit {
   ticketData: any;
   mensaje: String = '';
   vehiculo!: Vehiculo;
+  ticketEnCurso!: any;
 
   constructor(
     private dataService: DataService,
     private router: Router,
-    private matDialog: MatDialog
+    private matDialog: MatDialog,
+    private apiService: ApiService
   ) {}
 
   ngOnInit(): void {
@@ -29,6 +32,8 @@ export class DashboardComponent implements OnInit {
 
     //Alamcena el vehiculo del dataservice en la variable vehiculo para usarla despues
     this.vehiculo = this.dataService.getVehiculo();
+
+    this.cargarTicketEnCurso();
   }
 
   // Metodo para abrir el modal para añadir un ticket
@@ -36,9 +41,23 @@ export class DashboardComponent implements OnInit {
     this.matDialog.open(ModalComponent);
   }
 
+  // Metodo que carga el ticket en curso si lo hay
+  cargarTicketEnCurso():void{
+    this.apiService.getTicketEnCurso(this.selectedMatricula).subscribe((data:any)=>{
+      this.ticketEnCurso=data;
+    })
+  }
+
   // Metodo para abrir el modal para ampliar un ticket
   abrirModalAmpliar():void{
-    this.matDialog.open(ModalAmpliarComponent);
+    // Comprueba si hay un ticket en curso,
+    // Si lo hay abre el componente ampliar 
+    if (this.ticketEnCurso){
+      this.matDialog.open(ModalAmpliarComponent);
+    } else {
+      this.mensaje="No tiene ningun ticket en curso.";
+    }
+   
   }
 
   // Metodo para ir al login o "cerrar sesion"
