@@ -1,55 +1,198 @@
-# TrabajoFinal_ParkingApp
 
-Trabajo final Grado Superior Desarrollo de apliaciones Web, Adrián Sanz Sandoval.
+## Descripción
 
-# Endpoints API
+Esta aplicación ha sido desarrollada para el proyecto de fin de grado del Grado Superior Desarrollo de apliaciones Web por el alumno Adrián Sanz Sandoval.
 
-## Tabla Vehiculos
+[@adrianssanz](https://www.github.com/adrianssanz)
 
-### Con petición GET
+La aplicación consiste en una versión web para la gestión de un ticket de vehiculo. Nos permite crear un ticket asociado a una matricula, ampliarlo, y ver un historial de tickets del vehiculo loggeado mediante el servicio de firebase.
 
-"/api/vehiculos": Obtiene todos los vehiculos.
+La API a su vez permite muchas mas acciones como ver todos los usuarios, eliminar usuarios o ver todos los tickets y filtrarlos por su estado.
 
-"/api/vehiculos/{idVehiculo}": Obtiene un vehiculo por su ID.
+## Estructura
 
-"/api/vehiculos/matricula/{matricula}": Obtiene un vehiculo por su matricula.
+La aplicación consta de las siguientes partes, una base de datos desplegada en local en MySql, un api desarrollado en SpringBoot, que sirve para comunicar la parte front con la base de datos y un front desarrollado en Angular.js.
 
-"/api/vehiculos/uid/{uid}": Obtiene un vehiculo por su id.
+## Tecnologias utilizadas
 
-### Con petición POST
+Algunas de las tecnoligias utilizadas para esta aplicación son:
 
-"/api/vehiculos/{tipoId}": Se le proporciona un objeto vehiculo y el id del tipo de vehiculo que es, y añade un vehiculo con su tipo a la tabla.
+Front:
 
-### Con petición DELETE
+![Angular Badge](https://img.shields.io/badge/Angular-DD0031?style=for-the-badge&logo=angular&logoColor=white) ![Firebase Badge](https://img.shields.io/badge/firebase-ffca28?style=for-the-badge&logo=firebase&logoColor=black) ![Node.js Badge](https://img.shields.io/badge/Node%20js-339933?style=for-the-badge&logo=nodedotjs&logoColor=white) ![Bootstrap Badge](https://img.shields.io/badge/Bootstrap-563D7C?style=for-the-badge&logo=bootstrap&logoColor=white) ![HTML5 Badge](https://img.shields.io/badge/HTML5-E34F26?style=for-the-badge&logo=html5&logoColor=white) ![CSS Badge](https://img.shields.io/badge/CSS-1572B6?style=for-the-badge&logo=css3&logoColor=white) ![TypeScript Badge](https://img.shields.io/badge/TypeScript-007ACC?style=for-the-badge&logo=typescript&logoColor=white) ![JavaScript Badge](https://img.shields.io/badge/JavaScript-323330?style=for-the-badge&logo=javascript&logoColor=F7DF1E) ![Angular Material Badge](https://img.shields.io/badge/Angular_Material-1976D2?style=for-the-badge&logo=angular&logoColor=white)
 
-"/vehiculos/{idVehiculo}": Borra un vehiculo de la tabla segun su Id.
+Back: 
 
-## Tabla Tipos de Vehiculos
+![Java Badge](https://img.shields.io/badge/Java-007396?style=for-the-badge&logo=java&logoColor=white) ![Spring Boot Badge](https://img.shields.io/badge/Spring_Boot-6DB33F?style=for-the-badge&logo=spring&logoColor=white) ![MySQL Badge](https://img.shields.io/badge/MySQL-4479A1?style=for-the-badge&logo=mysql&logoColor=white) ![Maven Badge](https://img.shields.io/badge/Maven-C71A36?style=for-the-badge&logo=apache-maven&logoColor=white)
 
-### Con petición GET
 
-"/tiposVehiculos": Obtiene todos los tipos de vehiculos.
+## Demo de la aplicación
 
-"/tiposVehiculos/{tipoId}": Obtiene un tipo de vehiculo por su ID.
+[![Demo de la aplicación](https://img.youtube.com/vi/FsNsPiMs6hY/0.jpg)](https://www.youtube.com/watch?v=FsNsPiMs6hY)
 
-## Tabla Tickets (En proceso)
 
-### Con petición GET
+## Información API
 
-"/tickets": Obtiene todos los tickets.
+### Tabla Vehiculos
 
-"/tickets/{idTicket}": Obtiene un ticket por su ID.
+![APIS GET Badge](https://img.shields.io/badge/API-GET-brightgreen?style=for-the-badge)
 
-"/tickets/matricula/{matricula}": Obitiene los tickets asociados a una matricula ordenados por fecha.
+#### Get Vehiculos
 
-"/tickets/pagados": Obtiene los tickets en estado "pagado".
+```http
+  GET /api/vehiculos
+```
 
-"/tickets/no-pagados": Obtiene los tickets en estado "no_pagado".
+#### Get Vehiculo
 
-### Con petición POST
+```http
+  GET /api/vehiculos/${idVehiculo}
+```
 
-"/tickets/{matricula}": Crea un ticket en estado "no_pagado" asociado al coche con esa matricula, tambien comprueba si existe algun ticket "no_pagado".
+| Parametro | Tipo     | Descripcion                       |
+| :-------- | :------- | :-------------------------------- |
+| `id`      | `long` | **Requerido**. Id del vehiculo |
 
-### Con petición PUT (En proceso)
+#### Get Vehiculo por matricula
 
-"/tickets/{id}/pagado": Cambia el estado del ticket con ese id a "pagado".
+```http
+  GET /api/vehiculos/matricula/${matricula}
+```
+
+| Parametro | Tipo     | Descripcion                       |
+| :-------- | :------- | :-------------------------------- |
+| `matricula`      | `string` | **Requerido**. Matricula del vehiculo |
+
+#### Get Vehiculo por UID
+
+```http
+  GET /api/vehiculos/uid/${uid}
+```
+
+| Parametro | Tipo     | Descripcion                       |
+| :-------- | :------- | :-------------------------------- |
+| `uid`      | `long` | **Requerido**. Uid del vehiculo |
+
+![API POST Badge](https://img.shields.io/badge/API-POST-yellow?style=for-the-badge)
+
+#### Post Vehiculo
+
+```http
+  POST /api/vehiculos/${tipoId}
+```
+
+| Parametro | Tipo     | Descripcion                       |
+| :-------- | :------- | :-------------------------------- |
+| `tipoId`      | `long` | **Requerido**. Id del tipo de vehiculo |
+| `vehiculo`      | `Vehiculo` | **Requerido**. Objeto de tipo vehiculo con la matricula |
+
+![API DELETE Badge](https://img.shields.io/badge/API-DELETE-red?style=for-the-badge)
+
+#### Delete Vehiculo
+
+```http
+  DELETE /api/vehiculos/${idVehiculo}
+```
+
+| Parametro | Tipo     | Descripcion                       |
+| :-------- | :------- | :-------------------------------- |
+| `Id`      | `long` | **Requerido**. Id del vehiculo |
+
+### Tabla Tipos de Vehiculos
+
+![API GET Badge](https://img.shields.io/badge/API-GET-brightgreen?style=for-the-badge)
+
+#### Get Tipos de Vehiculos
+
+```http
+  GET /api/tiposVehiculos
+```
+
+#### Get Tipo de Vehiculo por ID
+
+```http
+  GET /api/tiposVehiculos/${tipoId}
+```
+
+| Parametro | Tipo     | Descripcion                       |
+| :-------- | :------- | :-------------------------------- |
+| `tipoId`      | `long` | **Requerido**. Id del tipo de vehiculo |
+
+### Tabla Tickets
+
+![API GET Badge](https://img.shields.io/badge/API-GET-brightgreen?style=for-the-badge)
+
+#### Get Tickets
+
+```http
+  GET /api/tickets
+```
+
+#### Get Ticket por ID
+
+```http
+  GET /api/tiposVehiculos/${tipoId}
+```
+
+| Parametro | Tipo     | Descripcion                       |
+| :-------- | :------- | :-------------------------------- |
+| `ticketId`      | `long` | **Requerido**. Id del ticket |
+
+#### Get Tickets por matricula
+
+```http
+  GET /api/tiposVehiculos/matricula/${matricula}
+```
+
+| Parametro | Tipo     | Descripcion                       |
+| :-------- | :------- | :-------------------------------- |
+| `matricula`      | `String` | **Requerido**. Matricula del vehiculo |
+
+#### Get Tickets Terminados
+
+```http
+  GET /api/tickets/terminados
+```
+
+#### Get Tickets En Curso
+
+```http
+  GET /api/tickets/en-Curso
+```
+
+#### Get Ticket En Curso por matricula
+
+```http
+  GET /api/tickets/en-curso/matricula/${matricula}
+```
+
+| Parametro | Tipo     | Descripcion                       |
+| :-------- | :------- | :-------------------------------- |
+| `matricula`      | `String` | **Requerido**. Matricula del vehiculo |
+
+![API POST Badge](https://img.shields.io/badge/API-POST-yellow?style=for-the-badge)
+
+#### Post Ticket en curso
+
+```http
+  POST /api/tickets/${matricula}
+```
+
+| Parametro | Tipo     | Descripcion                       |
+| :-------- | :------- | :-------------------------------- |
+| `matricula`      | `String` | **Requerido**. Matricula del vehiculo |
+| `ticket`      | `Ticket` | **Requerido**. Objeto de tipo ticket |
+
+![API PUT Badge](https://img.shields.io/badge/API-PUT-orange?style=for-the-badge)
+
+#### Put Ampliar ticket en curso
+
+```http
+  POST /api/tickets/${idTicket}/terminado
+```
+
+| Parametro | Tipo     | Descripcion                       |
+| :-------- | :------- | :-------------------------------- |
+| `idTicket`      | `long` | **Requerido**. Id del ticket en curso a ampliar |
+| `ticket`      | `Ticket` | **Requerido**. Objeto de tipo ticket |
+
