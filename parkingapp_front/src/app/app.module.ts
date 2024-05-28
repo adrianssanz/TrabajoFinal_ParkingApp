@@ -17,6 +17,7 @@ import { CookieService } from 'ngx-cookie-service';
 import { ModalComponent } from './components/modal/modal.component';
 import { MatDialogModule } from '@angular/material/dialog';
 import { ModalAmpliarComponent } from './components/modal-ampliar/modal-ampliar.component';
+import { ModalFinalizarComponent } from './components/modal-finalizar/modal-finalizar.component';
 
 @NgModule({
   declarations: [
@@ -29,7 +30,8 @@ import { ModalAmpliarComponent } from './components/modal-ampliar/modal-ampliar.
     ListaTicketsComponent,
     TicketComponent,
     ModalComponent,
-    ModalAmpliarComponent
+    ModalAmpliarComponent,
+    ModalFinalizarComponent
   ],
   imports: [
     BrowserModule,
