@@ -188,11 +188,22 @@ Back:
 #### Put Ampliar ticket en curso
 
 ```http
-  POST /api/tickets/${idTicket}/terminado
+  POST /api/tickets/${idTicket}/ampliar
 ```
 
 | Parametro | Tipo     | Descripcion                       |
 | :-------- | :------- | :-------------------------------- |
 | `idTicket`      | `long` | **Requerido**. Id del ticket en curso a ampliar |
+| `ticket`      | `Ticket` | **Requerido**. Objeto de tipo ticket |
+
+#### Put Finalizar ticket en curso
+
+```http
+  POST /api/tickets/${idTicket}/finalizado
+```
+
+| Parametro | Tipo     | Descripcion                       |
+| :-------- | :------- | :-------------------------------- |
+| `idTicket`      | `long` | **Requerido**. Id del ticket en curso a finalizar |
 | `ticket`      | `Ticket` | **Requerido**. Objeto de tipo ticket |
 
