@@ -2,7 +2,7 @@
   [ngClass]="{'bg-success': ticketData.estado === 'terminado', 'bg-danger': ticketData.estado !== 'terminado'}">
   <div class="border border-1 p-3 bg-white">
     <div class="d-flex row">
-      <div class="col-12 col-sm-6">
+      <div class="col-12 col-lg-6">
         <h2>Detalles del Ticket</h2>
         <p><strong>ID Ticket:</strong> {{ ticketData.id }}</p>
         <p
@@ -15,7 +15,7 @@
         <p><strong>Duración:</strong> {{ calcularDuracion()}}</p>
         <p><strong>Precio final:</strong> {{ ticketData.precio }}€</p>
       </div>
-      <div class="col-12 col-sm-6 d-flex justify-content-center align-items-end">
+      <div class="col-12 col-lg-6 d-flex justify-content-center align-items-end">
         <button *ngIf="ticketData.estado === 'en_curso'" class="fs-5 btn btn-success m-3 text-white" (click)="abrirModalAmpliar()">Ampliar
           ticket</button>
         <button *ngIf="ticketData.estado === 'en_curso'" class="fs-5 btn btn-danger m-3 text-white" (click)="abrirModalFinalizar()">Finalizar
