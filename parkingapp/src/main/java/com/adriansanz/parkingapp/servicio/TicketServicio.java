@@ -13,5 +13,6 @@ public interface TicketServicio {
     public List<Ticket> getTicketsByMatricula(String matricula);
     public List<Ticket> getTicketsPorEstado(String estado);
     public Ticket getTicketEnCurso(String matricula);
+    public Ticket finalizarTicketEnCurso(Ticket ticket, Long id);
 
 }

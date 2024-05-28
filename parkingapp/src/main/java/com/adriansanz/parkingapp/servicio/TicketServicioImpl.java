@@ -1,6 +1,5 @@
 package com.adriansanz.parkingapp.servicio;
 
-import java.util.Date;
 import java.util.List;
 
 import org.springframework.stereotype.Service;
@@ -68,7 +67,8 @@ public class TicketServicioImpl implements TicketServicio {
                     "El vehículo con matrícula " + vehiculo.getMatricula() + " tiene un ticket en curso.");
         }
 
-        // Calcular el precio, calculando la diferencia entre la hora de fin y la hora de inicio
+        // Calcular el precio, calculando la diferencia entre la hora de fin y la hora
+        // de inicio
 
         long tiempoMilisegundos = ticket.getHoraFin().getTime() - ticket.getHoraInicio().getTime();
         long horas = tiempoMilisegundos / (1000 * 60 * 60);
@@ -105,9 +105,10 @@ public class TicketServicioImpl implements TicketServicio {
         Ticket ticketEnCurso = ticketRepositorio.findById(idTicket)
                 .orElseThrow(() -> new ParkingNotFoundException("No se encontró ningún ticket con el ID: " + idTicket));
 
-        // Calcular el precio, calculando la diferencia entre la hora de fin y la hora de inicio
+        // Calcular el precio, calculando la diferencia entre la hora de fin y la hora
+        // de inicio
 
-        long tiempoMilisegundos = ticket.getHoraFin().getTime()-ticket.getHoraInicio().getTime();
+        long tiempoMilisegundos = ticket.getHoraFin().getTime() - ticket.getHoraInicio().getTime();
         long horas = tiempoMilisegundos / (1000 * 60 * 60);
 
         double precio = horas * ticket.getVehiculo().getTipoVehiculo().getTarifaHora();
@@ -115,6 +116,33 @@ public class TicketServicioImpl implements TicketServicio {
         ticketEnCurso.setPrecio(precio);
 
         return ticketRepositorio.save(ticketEnCurso);
+    }
+
+    @Override
+    public Ticket finalizarTicketEnCurso(Ticket ticket, Long idTicket) {
+        Ticket ticketFinalizado = ticketRepositorio.findById(idTicket)
+                .orElseThrow(() -> new ParkingNotFoundException("No se encontró ningún ticket con el ID: " + idTicket));
+        
+        // Calcular el precio, calculando la diferencia entre la hora de fin y la hora
+        // de inicio
+
+        long tiempoMilisegundos = ticket.getHoraFin().getTime()-ticket.getHoraInicio().getTime();
+        long horas = tiempoMilisegundos / (1000 * 60 * 60);
+        long minutos = (tiempoMilisegundos % (1000 * 60 * 60)) / (1000 * 60);
+
+        double tarifaHora = ticket.getVehiculo().getTipoVehiculo().getTarifaHora();
+        double tarifaMinuto = tarifaHora / 60;
+
+        double precio = (horas * tarifaHora) + (minutos*tarifaMinuto);
+
+        double precioRedondeado = Math.round(precio * 100.0) / 100.0;
+
+        ticketFinalizado.setHoraFin(ticket.getHoraFin());
+        ticketFinalizado.setPrecio(precioRedondeado);
+        ticketFinalizado.setEstado("terminado");
+
+        return ticketRepositorio.save(ticketFinalizado);
+
     }
 
 }

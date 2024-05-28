@@ -30,10 +30,16 @@ public class TicketController {
         return ResponseEntity.status(HttpStatus.CREATED).body(nuevoTicket);
     }
 
-    @PutMapping("/tickets/{idTicket}/terminado")
+    @PutMapping("/tickets/{idTicket}/ampliar")
     public ResponseEntity<Ticket> ampliarTicket(@RequestBody Ticket ticket, @PathVariable Long idTicket) {
         Ticket ticketAmpliado = ticketServicio.ampliarTicket(ticket, idTicket);
         return ResponseEntity.ok().body(ticketAmpliado);
+    }
+
+    @PutMapping("/tickets/{idTicket}/finalizado")
+    public ResponseEntity<Ticket> finalizarTicket(@RequestBody Ticket ticket, @PathVariable Long idTicket){
+        Ticket ticketFinalizado = ticketServicio.finalizarTicketEnCurso(ticket, idTicket);
+        return ResponseEntity.ok().body(ticketFinalizado);
     }
 
     @GetMapping("/tickets")

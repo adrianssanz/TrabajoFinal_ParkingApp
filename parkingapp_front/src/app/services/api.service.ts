@@ -36,7 +36,11 @@ export class ApiService {
   }
 
   ampliarTicketEnCurso(ticket: any, id: number){
-    return this.http.put<any>(`${this.apiUrl}/tickets/${id}/terminado`, ticket);
+    return this.http.put<any>(`${this.apiUrl}/tickets/${id}/ampliar`, ticket);
+  }
+
+  finalizarTicketEnCurso(ticket: any, id: number){
+    return this.http.put<any>(`${this.apiUrl}/tickets/${id}/finalizado`, ticket);
   }
 
   agregarTicket(ticket: any, matricula: String): Observable<any> {
