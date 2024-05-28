@@ -54,12 +54,25 @@ export class LoginComponent{
     }).catch(error=>(this.mensajeError = "Credenciales incorrectas.", console.log("ERROR: " + error)));
   }
 
-  // Metodo para login sin autenticacion de Firebase
-  login2(): void{
+  goToAddVehiculo(): void {
+    this.router.navigate(['/add-vehiculo']);
+  }
+
+
+  // Metodos para la exposición
+
+  // Metodo para login sin autenticacion de Firebase tipo coche
+  coche(): void{
     this.getMatricula("QhdPIrxLjEa7QSaJjNw99hy1dY73")
   }
 
-  goToAddVehiculo(): void {
-    this.router.navigate(['/add-vehiculo']);
+  // Metodo para login sin autenticacion de Firebase tipo moto
+  moto(): void{
+    this.getMatricula("fKniDMyy9gWE44RiUpdGeYPeWSu1")
+  }
+
+  // Metodo para login sin autenticacion de Firebase tipo furgoneta
+  furgoneta(): void{
+    this.getMatricula("Xhg0bENatEYC7EdOOQKMDBSaZJB2")
   }
 }
