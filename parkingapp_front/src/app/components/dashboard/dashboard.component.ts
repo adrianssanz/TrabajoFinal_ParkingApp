@@ -6,6 +6,7 @@ import { ModalComponent } from '../modal/modal.component';
 import { ModalAmpliarComponent } from '../modal-ampliar/modal-ampliar.component';
 import { Vehiculo } from '../../interfaces/vehiculo';
 import { ApiService } from '../../services/api.service';
+import { ModalFinalizarComponent } from '../modal-finalizar/modal-finalizar.component';
 
 @Component({
   selector: 'app-dashboard',
@@ -54,6 +55,18 @@ export class DashboardComponent implements OnInit {
     // Si lo hay abre el componente ampliar 
     if (this.ticketEnCurso){
       this.matDialog.open(ModalAmpliarComponent);
+    } else {
+      this.mensaje="No tiene ningun ticket en curso.";
+    }
+   
+  }
+
+  // Metodo para abrir el modal para finalizar un ticket
+  abrirModalFinalizar():void{
+    // Comprueba si hay un ticket en curso,
+    // Si lo hay abre el componente finalizar 
+    if (this.ticketEnCurso){
+      this.matDialog.open(ModalFinalizarComponent);
     } else {
       this.mensaje="No tiene ningun ticket en curso.";
     }
