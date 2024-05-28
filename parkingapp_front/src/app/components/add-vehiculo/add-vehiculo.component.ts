@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ApiService } from '../../services/api.service';
 import { Router } from '@angular/router';
 import { LoginService } from '../../services/login.service';
+import { Vehiculo } from '../../interfaces/vehiculo';
 
 @Component({
   selector: 'app-add-vehiculo',
@@ -80,7 +81,7 @@ export class AddVehiculoComponent implements OnInit {
     }
 
     this.apiService.getVehiculoByMatricula(this.matricula).subscribe(
-      (vehiculo: any) => {
+      (vehiculo: Vehiculo) => {
         this.mensaje = "El vehículo ya esta registrado.";
         this.tipoMensaje = 2;
       }, 
@@ -95,7 +96,7 @@ export class AddVehiculoComponent implements OnInit {
               this.mensaje = error.error,
               this.tipoMensaje = 2
             ));
-          }).catch(error => (this.mensaje = "Error al registrar el usuario."));
+          }).catch(error => ((this.mensaje = "Error al registrar el usuario."), this.tipoMensaje = 2));
         } else {
           this.mensaje = "Error.";
           this.tipoMensaje = 2;
