@@ -54,6 +54,11 @@ export class LoginComponent{
     }).catch(error=>(this.mensajeError = "Credenciales incorrectas.", console.log("ERROR: " + error)));
   }
 
+  // Metodo para login sin autenticacion de Firebase
+  login2(): void{
+    this.getMatricula("QhdPIrxLjEa7QSaJjNw99hy1dY73")
+  }
+
   goToAddVehiculo(): void {
     this.router.navigate(['/add-vehiculo']);
   }
