@@ -30,3 +30,8 @@ CREATE TABLE IF NOT EXISTS tickets (
     estado VARCHAR(255),
     FOREIGN KEY (vehiculo_id) REFERENCES vehiculos(vehiculo_id)
 );
+
+-- Crear evento para finalizar los tickets
+CREATE DEFINER=`root`@`localhost` EVENT `actualizar_estado_tickets` ON SCHEDULE EVERY 1 SECOND STARTS '2024-05-21 17:51:48' ON COMPLETION NOT PRESERVE ENABLE DO UPDATE tickets
+   SET estado = 'terminado'
+   WHERE estado = 'en_curso' AND hora_fin < NOW()
