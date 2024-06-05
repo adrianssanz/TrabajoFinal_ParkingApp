@@ -1,7 +1,7 @@
 
 ## Descripción
 
-Esta aplicación ha sido desarrollada para el proyecto de fin de grado del Grado Superior Desarrollo de apliaciones Web por el alumno Adrián Sanz Sandoval.
+Esta aplicación ha sido desarrollada para el proyecto de fin de grado del Grado Superior Desarrollo de aplicaciones Web por el alumno Adrián Sanz Sandoval.
 
 [@adrianssanz](https://www.github.com/adrianssanz)
 
